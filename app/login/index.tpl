@@ -1,0 +1,36 @@
+      <div class="page-header">
+        <h1>Login</h1>
+      </div>
+
+<?php if ($this->auth_status == 'error') { ?>
+<div class="alert alert-warning">
+  <strong>Warning!</strong> Authorisation Error.
+</div>
+<?php } ?>
+
+<div class="row">
+  <div class="col-xs-8 col-md-6">
+      
+<form class="form-horizontal" role="form" method="post" action="/login/" data-toggle="validator">
+  <div class="form-group">
+    <label for="inputLogin" class="col-sm-2 control-label">Login</label>
+    <div class="col-sm-10">
+        <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Login" 
+               value="<?php if (isset($_REQUEST['login'])) { echo $_REQUEST['login']; } ?>" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Login</button>
+    </div>
+  </div>
+</form>
+      
+      </div>
+</div>
