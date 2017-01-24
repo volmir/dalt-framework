@@ -1,6 +1,7 @@
 <?php
 
-class loginController extends \Core\Controller {
+class LoginController extends \Core\Controller 
+{
     /**
      *
      * @var string 

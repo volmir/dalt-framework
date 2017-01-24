@@ -4,15 +4,7 @@ namespace Core;
 
 class DB {
 
-    protected static $instance = null;
-
-    public function __construct() {
-
-    }
-
-    public function __clone() {
-        
-    }
+    protected static $instance = null; 
 
     public static function getInstance() {
         if (self::$instance === null) {
@@ -24,8 +16,8 @@ class DB {
             
             $config = \Core\Config::getInstance();
             
-            $dsn = 'mysql:host=' . $config['db.host'] . ';dbname=' . $config['db.dbname'] . ';charset=utf8';
-            self::$instance = new \PDO($dsn, $config['db.user'], $config['db.password'], $opt);
+            $dsn = 'mysql:host=' . $config['dbHost'] . ';dbname=' . $config['dbDbname'] . ';charset=utf8';
+            self::$instance = new \PDO($dsn, $config['dbUser'], $config['dbPassword'], $opt);
         }
         return self::$instance;
     }
@@ -40,7 +32,21 @@ class DB {
         $stmt->execute($args);               
         return $stmt;
     }
+    
+    private function __construct() 
+    {
 
+    }
+
+    private function __clone() 
+    {
+        
+    }
+    
+    private function __wakeup() 
+    {
+        
+    }         
 }
 
 /*

@@ -1,6 +1,6 @@
 <?php
 
-class indexController extends \Core\Controller {
+class IndexController extends \Core\Controller {
 
     /**
      *
