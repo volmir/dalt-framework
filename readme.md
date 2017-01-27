@@ -9,3 +9,4 @@ $ git clone https://github.com/volmir/simple-framework.git .
 $ composer install
 ```
 
+DocumentRoot is "./public"
