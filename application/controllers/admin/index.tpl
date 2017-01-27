@@ -1,4 +1,8 @@
+<?php
+    
+use Frm\Model\Task;    
 
+?>
 <div class="page-header">
             
     <div class="row">
@@ -14,8 +18,8 @@
       <label for="statusSelect">Status</label>
       <select id="statusSelect" name="status" class="form-control">
             <option value="all">All</option>
-            <option value="0" <?php if (isset($_GET['status']) && $_GET['status'] == \Model\Task::STATUS_NEW && $_GET['status'] != 'all') { echo ' selected="selected"'; } ?>>New</option>
-            <option value="1" <?php if (isset($_GET['status']) && $_GET['status'] == \Model\Task::STATUS_FINISHED) { echo ' selected="selected"'; } ?>>Finished</option>
+            <option value="0" <?php if (isset($_GET['status']) && $_GET['status'] == Task::STATUS_NEW && $_GET['status'] != 'all') { echo ' selected="selected"'; } ?>>New</option>
+            <option value="1" <?php if (isset($_GET['status']) && $_GET['status'] == Task::STATUS_FINISHED) { echo ' selected="selected"'; } ?>>Finished</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-filter"></span> Filter</button>
@@ -67,9 +71,9 @@ if ($this->tasks) {
           <td class="text-center">         
               <span class="glyphicon glyphicon-zoom-in pointer" data-hint="<?php echo $row->image?>"></span>
           </td>
-          <td><?php if ($row->status == \Model\Task::STATUS_NEW) { ?>
+          <td><?php if ($row->status == Task::STATUS_NEW) { ?>
                 <span class="label label-default">[New]</span>
-              <?php } elseif ($row->status == \Model\Task::STATUS_FINISHED) { ?>
+              <?php } elseif ($row->status == Task::STATUS_FINISHED) { ?>
                 <span class="label alert-success">[Finidhed]</span>
               <?php } ?>
           </td>

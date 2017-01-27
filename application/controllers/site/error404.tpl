@@ -1,5 +1,5 @@
       <div class="page-header">
-        <h1>Contacts</h1>
+        <h1>404 Error - Page not found</h1>
       </div>
 
 

@@ -1,6 +1,8 @@
 <?php
 
-class BlogController extends \Core\Controller 
+use Frm\Core\Controller;
+
+class BlogController extends Controller 
 {
 
     public function __construct() 

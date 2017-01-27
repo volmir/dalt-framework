@@ -1,6 +1,9 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
+
+use Frm\Core\Config;
+use Frm\Core\View;
 
 class Controller {
 
@@ -15,13 +18,10 @@ class Controller {
      */
     public $config; 
 
-    public function __construct() {
-        $this->config = \Core\Config::getInstance();
+    public function __construct() 
+    {
+        $this->config = Config::getInstance();
         $this->view = new View($this);
-    }
-
-    public function __destruct() {
-
     }
 
 }

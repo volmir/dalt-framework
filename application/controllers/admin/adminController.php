@@ -1,6 +1,12 @@
 <?php
 
-class adminController extends \Core\Controller {
+use Frm\Core\Controller;
+use Frm\Core\Response;
+use Frm\Core\Auth;
+use Frm\Core\Application;
+use Frm\Model\Task;
+
+class adminController extends Controller {
     
     /**
      *
@@ -16,16 +22,17 @@ class adminController extends \Core\Controller {
     public function __construct() {
         parent::__construct();
         
-        if (!\Core\Auth::isAuth()) {
-            \Core\Application::redirect('/login/');
+        if (!Auth::isAuth()) {
+            Response::redirect('/login/');
         }
     }
 
     public function indexAction() {
-        $task = new \Model\Task();
+        var_dump($_GET);
+        $task = new Task();
         $limit = 15;
         $params = [];
-        if (isset($_GET['status']) && in_array($_GET['status'], [\Model\Task::STATUS_NEW, \Model\Task::STATUS_FINISHED])) {
+        if (isset($_GET['status']) && in_array($_GET['status'], [Task::STATUS_NEW, Task::STATUS_FINISHED])) {
             $params['status'] = $_GET['status'];
         }
         $this->tasks = $task->getTasks($limit, $params);
@@ -36,7 +43,7 @@ class adminController extends \Core\Controller {
     
     public function editAction() {
         if (isset($_REQUEST['task_id']) && $_REQUEST['task_id'] > 0) {
-            $task = new \Model\Task();
+            $task = new Task();
             $this->task = $task->getTask($_REQUEST['task_id']);
             
             if (is_object($this->task)) {
@@ -44,16 +51,16 @@ class adminController extends \Core\Controller {
                 $this->view->render('edit');
             }
         } else {
-            \Core\Application::redirect('/admin/');
+            Response::redirect('/admin/');
         }  
     }
     
     public function saveAction() {
-        $task = new \Model\Task();
+        $task = new Task();
         $editDataStatus = $task->edit($_REQUEST);
 
         $url = '/admin/?edit_status=' . ($editDataStatus ? 'success' : 'error');
-        \Core\Application::redirect($url);
+        Response::redirect($url);
     }     
     
 }

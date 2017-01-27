@@ -1,10 +1,10 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-use Core\Request;
-use Core\Application;
-use Core\Exception\SystemException;
+use Frm\Core\Request;
+use Frm\Core\Application;
+use Frm\Core\Exception\SystemException;
 
 class Router
 {
@@ -48,11 +48,11 @@ class Router
         if ($requestedUrl === null) {
             $uri = explode('?', $_SERVER["REQUEST_URI"]);
             $requestedUrl = urldecode($uri[0]);
-            self::$params = Request::splitUrl($requestedUrl);
+            self::$params = self::splitUrl($requestedUrl);
         }
 
         if (isset(self::$routes[$requestedUrl])) {
-            self::$params = Request::splitUrl(self::$routes[$requestedUrl]);
+            self::$params = self::splitUrl(self::$routes[$requestedUrl]);
             return self::executeAction();
         }       
         
@@ -65,7 +65,7 @@ class Router
                 if (strpos($uri, '$') !== false && strpos($route, '(') !== false) {
                     $uri = preg_replace('#^' . $route . '$#', $uri, $requestedUrl);
                 }
-                self::$params = Request::splitUrl($uri);
+                self::$params = self::splitUrl($uri);
 
                 break; 
             }
@@ -80,7 +80,7 @@ class Router
     public static function executeAction() 
     {     
         $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
-        $controller_path = "app/" . strtolower($controller_name) . "/" . $controller_name . 'Controller.php';
+        $controller_path = __DIR__ . "/../../application/controllers/" . strtolower($controller_name) . "/" . $controller_name . 'Controller.php';
         try {
             if (file_exists($controller_path)) {
                 include_once $controller_path;
@@ -90,6 +90,8 @@ class Router
         } catch (SystemException $e) {
             $e->logError();
             header("HTTP/1.0 404 Not Found");
+            Router::addRoute($_SERVER["REQUEST_URI"], 'site/error404');
+            Router::dispatch();
         }
 
         $controller_class = $controller_name . 'Controller';
@@ -106,8 +108,17 @@ class Router
             }
         } catch (SystemException $e) {
             $e->logError();
-            header("HTTP/1.0 404 Not Found");         
+            header("HTTP/1.0 404 Not Found");  
+            Router::addRoute($_SERVER["REQUEST_URI"], 'site/error404');
+            Router::dispatch();
         }
     }
 
+    /**
+     * Divide the URL submitted to the components
+     */
+    public static function splitUrl($url) 
+    {
+        return preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
+    }    
 }

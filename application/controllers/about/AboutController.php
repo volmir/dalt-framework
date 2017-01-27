@@ -1,6 +1,8 @@
 <?php
 
-class ContactsController extends \Core\Controller 
+use Frm\Core\Controller;
+
+class AboutController extends Controller 
 {
 
     public function __construct() 
@@ -10,7 +12,7 @@ class ContactsController extends \Core\Controller
 
     public function indexAction() 
     {        
-        $this->view->set('title', 'Contacts');
+        $this->view->set('title', 'About');
         $this->view->render('index');
     }
     

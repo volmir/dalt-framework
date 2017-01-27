@@ -1,23 +1,19 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-/**
- * 
- * Class for parse and show templates
- */
 class View {
 
     /**
      * 
-     * @var header.tpl
+     * @var string
      */
-    protected $header_templete = '../../theme/layout/header';
+    protected $header_templete = '../../layout/header';
     /**
      * 
-     * @var footer.tpl
+     * @var string
      */
-    protected $footer_templete = '../../theme/layout/footer';
+    protected $footer_templete = '../../layout/footer';
     /**
      *
      * @var string
@@ -27,12 +23,12 @@ class View {
      * 
      * @var Controller
      */
-    private $_controller;    
+    private $controller;    
     /**
      *
      * @var string
      */
-    private $_path;
+    private $path;
     /**
      *
      * @var array
@@ -40,16 +36,16 @@ class View {
     public $vars = array();    
 
     public function __construct($controller) {        
-        $this->_controller = $controller;
-        $path = str_replace('Controller', '', get_class($controller));
-        $this->_path = APPLICATION_PATH . '/' . $path . '/';        
+        $this->controller = $controller;
+        $path = strtolower(str_replace('Controller', '', get_class($controller)));
+        $this->path = __DIR__ . '/../../application/controllers/' . $path . '/';        
     }
     
     public function __get($name)
     {
-        if (property_exists($this->_controller,$name))
+        if (property_exists($this->controller,$name))
         {
-            return $this->_controller->{$name};
+            return $this->controller->{$name};
         }
         
         return null;
@@ -57,9 +53,9 @@ class View {
     
     public function __call($name, $arguments)
     {
-        if (method_exists($this->_controller, $name))
+        if (method_exists($this->controller, $name))
         {
-            return $this->_controller->{$name}($arguments[0]);
+            return $this->controller->{$name}($arguments[0]);
         }
     }    
 
@@ -89,19 +85,19 @@ class View {
      */
     public function parse($template) {
         $template = $template . $this->template_extention;
-        if (file_exists($this->_path . $template)) {
+        if (file_exists($this->path . $template)) {
             if (count($this->vars)) {
                 extract($this->vars, EXTR_SKIP);
             }
 
             ob_start();
-            include($this->_path . $template);
+            include($this->path . $template);
             $output = ob_get_contents();
             ob_end_clean();
 
             return $output;
         } else {
-            throw new \Exception('The template file "' . $template . '" does not exist');
+            throw new \Exception('The template file "' . $this->path . $template . '" does not exist');
         }
     }
 
@@ -128,41 +124,3 @@ class View {
         echo $this->parse($template);
     }    
 }
-
-/*
-
-$view = new \Core\View('/templates/');
-
-$view->set('title', 'Title');
-$view->set('header', 'Header');
-$view->set('menu', $view->parse('menu.tpl'));
-$view->set('content', $view->parse('content.tpl'));
-
-$view->render('index.tpl');
- 
-
-
-<!-- begin source of "header.tpl" -->
-<html>
-<head>
-    <title><?php echo $title; ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
-<body>
-<!-- end source of "header.tpl" -->
-
-<!-- begin source of "index.tpl" -->
-    <?php echo $menu; ?>
-    <hr />
-    <h1><?php echo $header; ?></h1>    
-    <?php echo $content; ?>
-<!-- end source of "index.tpl" -->
-
-<!-- begin source of "footer.tpl" -->
-</body>
-</html>
-<!-- end source of "footer.tpl" -->
-
- */
-
-

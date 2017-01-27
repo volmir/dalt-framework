@@ -1,8 +1,14 @@
 <?php
 
-namespace Model;
+namespace Frm\Model;
 
-class Task extends \Core\Model {
+use Frm\Core\Model;
+use Frm\Core\DB;
+use Frm\Model\Image;
+use Frm\Model\Task;
+
+class Task extends Model 
+{
     
     const STATUS_NEW = 0;
     const STATUS_FINISHED = 1;
@@ -37,7 +43,7 @@ class Task extends \Core\Model {
         $params = [];
         $params['task_id'] = $task_id;
         $sql = "SELECT * FROM t_tasks WHERE task_id = :task_id";
-        return \Core\DB::run($sql, $params)->fetch();
+        return DB::run($sql, $params)->fetch();
     }
     
     /**
@@ -52,7 +58,7 @@ class Task extends \Core\Model {
             $where_sql = ' WHERE status = :status ';
         }
         $sql = "SELECT * FROM t_tasks " . $where_sql . " ORDER BY task_id DESC LIMIT " . (int)$limit;
-        return \Core\DB::run($sql, $params)->fetchAll();
+        return DB::run($sql, $params)->fetchAll();
     }    
 
     /**
@@ -83,11 +89,11 @@ class Task extends \Core\Model {
      */
     public function edit($data) {     
         if (isset($data['status'])) {
-            $data['status'] = \Model\Task::STATUS_FINISHED;
+            $data['status'] = Task::STATUS_FINISHED;
         } else {
-            $data['status'] = \Model\Task::STATUS_NEW;
+            $data['status'] = Task::STATUS_NEW;
         }
-        $stmt = \Core\DB::run("UPDATE t_tasks SET content=?, status=? WHERE task_id=?", [$data['description'], $data['status'], $data['task_id']]);
+        $stmt = DB::run("UPDATE t_tasks SET content=?, status=? WHERE task_id=?", [$data['description'], $data['status'], $data['task_id']]);
         $stmt->rowCount();
         
         return true;
@@ -109,7 +115,7 @@ class Task extends \Core\Model {
         if (!isset($this->files['image'])) {
             $this->errors[] = 'Image not found';
         }     
-        if (!in_array($this->files['image']['type'], \Model\Image::getCorrectTypes())) {
+        if (!in_array($this->files['image']['type'], Image::getCorrectTypes())) {
             $this->errors[] = 'Incorrect image type';
         } 
     }
@@ -125,10 +131,10 @@ class Task extends \Core\Model {
             addslashes($this->data['username']),
             addslashes($this->data['description'])
         );
-        $q = \Core\DB::getInstance()->prepare($sql);
+        $q = DB::getInstance()->prepare($sql);
         $result_add = $q->execute();
 
-        $dbh = \Core\DB::getInstance();
+        $dbh = DB::getInstance();
         $this->lastTaskId = $dbh->lastInsertId();
         
         $result_upload = $this->uploadImage();
@@ -153,13 +159,13 @@ class Task extends \Core\Model {
         $params['tmp_name'] = $this->files['image']['tmp_name'];
         $params['type'] = $this->files['image']['type'];
         
-        $image = new \Model\Image();
+        $image = new Image();
         if ($image->upload($params)) { 
             $sql = sprintf("UPDATE `t_tasks` SET `image` = '%s' WHERE `task_id` = '%d'", 
                 addslashes($image_name),
                 addslashes($this->lastTaskId)    
             );
-            $q = \Core\DB::getInstance()->prepare($sql);
+            $q = DB::getInstance()->prepare($sql);
             if (!$q->execute()) {
                 $this->errors[] = 'Image name not updated';
                 return false;

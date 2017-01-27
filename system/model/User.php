@@ -1,8 +1,12 @@
 <?php
 
-namespace Model;
+namespace Frm\Model;
 
-class User extends \Core\Model {
+use Frm\Core\Model;
+use Frm\Core\DB;
+
+class User extends Model 
+{
     /**
      *
      * @var string

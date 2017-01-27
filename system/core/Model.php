@@ -1,10 +1,14 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-class Model {
+use Frm\Core\DB;
 
-    public function __construct() {
+class Model 
+{
+
+    public function __construct() 
+    {
 
     }
     

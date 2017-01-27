@@ -16,6 +16,11 @@
     <a href="/index/add" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add new task</a>
 </p>    
 
+<?php
+    
+use Frm\Model\Task;    
+
+?>
 <table class="table table-striped">
       <thead>
         <tr>
@@ -41,9 +46,9 @@ if ($this->tasks) {
           <td class="text-center">         
               <span class="glyphicon glyphicon-zoom-in pointer" data-hint="<?php echo $row->image?>"></span>
           </td>
-          <td><?php if ($row->status == \Model\Task::STATUS_NEW) { ?>
+          <td><?php if ($row->status == Task::STATUS_NEW) { ?>
                 <span class="label label-default">[New]</span>
-              <?php } elseif ($row->status == \Model\Task::STATUS_FINISHED) { ?>
+              <?php } elseif ($row->status == Task::STATUS_FINISHED) { ?>
                 <span class="label alert-success">[Finidhed]</span>
               <?php } ?>
           </td>

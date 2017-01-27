@@ -1,8 +1,12 @@
 <?php
 
-namespace Model;
+namespace Frm\Model;
 
-class Image extends \Core\Model {
+use Frm\Core\Model;
+use Frm\Core\DB;
+
+class Image extends Model 
+{
     /**
      *
      * @var array 
@@ -17,7 +21,7 @@ class Image extends \Core\Model {
      *
      * @var string
      */
-    public $path = '/static/upload/';
+    public $path = '/public/upload/';
 
     /**
      * 
@@ -29,7 +33,7 @@ class Image extends \Core\Model {
             return false;
         }	
         
-        $uploadfile = ROOT_PATH . $this->path . basename($params['name']);
+        $uploadfile = __DIR__ . $this->path . basename($params['name']);
         if (move_uploaded_file($params['tmp_name'], $uploadfile)) {
             return true;
         } else {

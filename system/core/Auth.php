@@ -1,6 +1,8 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
+
+use Frm\Model\User;
 
 class Auth {
     
@@ -23,7 +25,7 @@ class Auth {
      * @return boolean
      */
     public static function auth($login, $password) {
-        $user = new \Model\User();        
+        $user = new User();        
         if ($user->check($login, $password)) {
             $_SESSION["login"] = $login;
             return true;

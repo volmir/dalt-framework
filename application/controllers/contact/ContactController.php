@@ -1,6 +1,8 @@
 <?php
 
-class ContactsController extends \Core\Controller 
+use Frm\Core\Controller;
+
+class ContactController extends Controller 
 {
 
     public function __construct() 

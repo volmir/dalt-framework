@@ -1,16 +1,18 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-class Request 
+class Response 
 {
 
     /**
-     * Divide the URL submitted to the components
+     * 
+     * @param string $url
      */
-    public static function splitUrl($url) 
+    public static function redirect($url) 
     {
-        return preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
+        header('Location: ' . $url);
+        exit();
     }    
     
 }

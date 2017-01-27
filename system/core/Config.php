@@ -1,8 +1,6 @@
 <?php
 
-namespace Core;
-
-use Core\Application;
+namespace Frm\Core;
 
 class Config 
 {
@@ -16,33 +14,28 @@ class Config
      *
      * @var string 
      */
-    private static $configPath = 'config/';
+    private static $configPath = '/../../application/config/';
 
     /**
      * Returns instance of config
      * @return config
      */
-    public static function getInstance() 
+    public static function getInstance($config = 'main') 
     {
-        if (is_null(self::$instance)) {
-            self::$instance = self::getConfig();
-        }
-
-        if (Application::isProduction()) {
-            return self::$instance['production'];
-        } else {
-            return self::$instance['local'];
-        }
+        if (!isset(self::$instance[$config])) {
+            self::$instance[$config] = self::parce($config);
+        }    
         
+        return self::$instance[$config];
     }
     
     /**
      * Returns instance of config
-     * @return confug
+     * @return config filename
      */
-    public static function getConfig($filename = 'config.ini') 
+    private static function parce($filename) 
     {
-        $filepath = self::$configPath . $filename;
+        $filepath = __DIR__ . self::$configPath . $filename . '.ini';
         if (file_exists($filepath)) {
             $result = parse_ini_file($filepath, true);
         } else {

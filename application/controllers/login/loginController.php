@@ -1,6 +1,10 @@
 <?php
 
-class LoginController extends \Core\Controller 
+use Frm\Core\Controller;
+use Frm\Core\Auth;
+use Frm\Core\Response;
+
+class LoginController extends Controller 
 {
     /**
      *
@@ -16,8 +20,8 @@ class LoginController extends \Core\Controller
         $this->view->set('title', 'Login');
         
         if (isset($_REQUEST['login']) && isset($_REQUEST['password'])) {
-            if (\Core\Auth::auth($_REQUEST['login'], $_REQUEST['password'])) {
-                \Core\Application::redirect('/admin/');
+            if (Auth::auth($_REQUEST['login'], $_REQUEST['password'])) {
+                Response::redirect('/admin/');
             } else {
                 $this->auth_status = 'error';
             }            
@@ -27,7 +31,7 @@ class LoginController extends \Core\Controller
     }   
     
     public function logoutAction() {
-        \Core\Auth::logout();
-        \Core\Application::redirect('/');
+        Auth::logout();
+        Response::redirect('/');
     }    
 }

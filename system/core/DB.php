@@ -1,12 +1,17 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-class DB {
+use Frm\Core\Config;
+use Frm\Core\Application;
+
+class DB 
+{
 
     protected static $instance = null; 
 
-    public static function getInstance() {
+    public static function getInstance() 
+    {
         if (self::$instance === null) {
             $opt = array(
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
@@ -14,7 +19,12 @@ class DB {
                 \PDO::ATTR_EMULATE_PREPARES => TRUE
             );
             
-            $config = \Core\Config::getInstance();
+            $config = Config::getInstance('db');
+            if (Application::isProduction()) {
+                $config = $config['production'];
+            } else {
+                $config = $config['local'];
+            } 
             
             $dsn = 'mysql:host=' . $config['dbHost'] . ';dbname=' . $config['dbDbname'] . ';charset=utf8';
             self::$instance = new \PDO($dsn, $config['dbUser'], $config['dbPassword'], $opt);
@@ -22,11 +32,13 @@ class DB {
         return self::$instance;
     }
 
-    public static function __callStatic($method, $args) {
+    public static function __callStatic($method, $args) 
+    {
         return call_user_func_array(array(self::instance(), $method), $args);
     }
 
-    public static function run($sql, $args = []) {         
+    public static function run($sql, $args = []) 
+    {         
         $stmt = self::getInstance()->prepare($sql);
         //$stmt->debugDumpParams();
         $stmt->execute($args);               

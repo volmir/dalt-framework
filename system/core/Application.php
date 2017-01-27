@@ -1,26 +1,16 @@
 <?php
 
-namespace Core;
+namespace Frm\Core;
 
-use Core\Config;
-use Core\Router;
+use Frm\Core\Config;
+use Frm\Core\Router;
 
 class Application 
 {
-    public static function run() 
+    public function run() 
     {     
-        Router::addRoute(Config::getConfig('routes.ini'));
+        Router::addRoute(Config::getInstance('routes'));
         Router::dispatch();
-    }
-
-    /**
-     * 
-     * @param string $url
-     */
-    public static function redirect($url) 
-    {
-        header('Location: ' . $url);
-        exit();
     }
 
     /**
@@ -29,8 +19,8 @@ class Application
      */
     public static function isProduction() 
     {
-        $result = false;        
-        if ($_SERVER['SERVER_NAME'] != 'localhost') {
+        $result = false;     
+        if ($_SERVER['SERVER_ADDR'] != '127.0.0.1') {
             $result = true;
         }        
         return $result;

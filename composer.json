@@ -1,0 +1,10 @@
+{
+    "name": "volmir/simple-framework",
+    "description": "Simple PHP Framework",
+    "homepage": "https://github.com/volmir/simple-framework",    
+    "autoload": {
+        "psr-4": {
+            "Frm\\": "/system/"
+        }
+    }
+}

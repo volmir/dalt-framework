@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Exception;
+namespace Frm\Core\Exception;
  
 class SystemException extends \Exception 
 {

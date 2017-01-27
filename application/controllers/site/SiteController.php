@@ -1,6 +1,8 @@
 <?php
 
-class ContactsController extends \Core\Controller 
+use Frm\Core\Controller;
+
+class SiteController extends Controller 
 {
 
     public function __construct() 
@@ -10,8 +12,13 @@ class ContactsController extends \Core\Controller
 
     public function indexAction() 
     {        
-        $this->view->set('title', 'Contacts');
-        $this->view->render('index');
+
     }
+    
+    public function error404Action() 
+    {        
+        $this->view->set('title', '404 Error');
+        $this->view->render('error404');
+    }    
     
 }
