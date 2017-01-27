@@ -2,12 +2,12 @@
 
 namespace Frm\Core\Exception;
  
-class SystemException extends \Exception 
+class CoreException extends \Exception 
 {
 
     public function logError() 
     {
-        echo $this->getMessage();
+        //echo $this->getMessage();
     }
 
 }

@@ -28,7 +28,6 @@ class adminController extends Controller {
     }
 
     public function indexAction() {
-        var_dump($_GET);
         $task = new Task();
         $limit = 15;
         $params = [];

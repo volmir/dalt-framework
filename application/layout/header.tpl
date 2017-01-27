@@ -20,10 +20,10 @@ use Frm\Core\Auth;
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
 
-        <script src="/public/js/scripts.js"></script>    
+        <script src="/js/scripts.js"></script>    
 
-        <link rel="stylesheet" href="/public/css/sticky-footer-navbar.css">
-        <link rel="stylesheet" href="/public/css/styles.css">
+        <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
 

@@ -3,8 +3,9 @@
 namespace Frm\Core;
 
 use Frm\Core\Request;
+use Frm\Core\Response;
 use Frm\Core\Application;
-use Frm\Core\Exception\SystemException;
+use Frm\Core\Exception\CoreException;
 
 class Router
 {
@@ -46,8 +47,7 @@ class Router
     public static function dispatch($requestedUrl = null) 
     {
         if ($requestedUrl === null) {
-            $uri = explode('?', $_SERVER["REQUEST_URI"]);
-            $requestedUrl = urldecode($uri[0]);
+            $requestedUrl = self::cropUrl($_SERVER["REQUEST_URI"]);
             self::$params = self::splitUrl($requestedUrl);
         }
 
@@ -84,19 +84,19 @@ class Router
         try {
             if (file_exists($controller_path)) {
                 include_once $controller_path;
+                $controller_class = $controller_name . 'Controller';
+                $controller = new $controller_class;
             } else {
-                throw new SystemException('Controller "' . $controller_name . '" not exists');
+                throw new CoreException('Controller "' . $controller_name . '" not exists');
             }
-        } catch (SystemException $e) {
+        } catch (CoreException $e) {
             $e->logError();
-            header("HTTP/1.0 404 Not Found");
-            Router::addRoute($_SERVER["REQUEST_URI"], 'site/error404');
+            Response::sendHeader("HTTP/1.0 404 Not Found");            
+            Router::addRoute(self::cropUrl($_SERVER["REQUEST_URI"]), 'site/error404');
             Router::dispatch();
-        }
+            return;
+        }      
 
-        $controller_class = $controller_name . 'Controller';
-        $controller = new $controller_class;        
-        
         $action = (isset(self::$params[1]) ? self::$params[1] : self::DEFAULT_ACTION) . 'Action';
         $params = array_slice(self::$params, 2);
 
@@ -104,13 +104,14 @@ class Router
             if (method_exists($controller, $action)) {
                 call_user_func_array(array($controller, $action), $params);
             } else {
-                throw new SystemException('Action "' . $action . '" not exists');                
+                throw new CoreException('Action "' . $action . '" not exists');                
             }
-        } catch (SystemException $e) {
+        } catch (CoreException $e) {
             $e->logError();
-            header("HTTP/1.0 404 Not Found");  
-            Router::addRoute($_SERVER["REQUEST_URI"], 'site/error404');
+            Response::sendHeader("HTTP/1.0 404 Not Found");             
+            Router::addRoute(self::cropUrl($_SERVER["REQUEST_URI"]), 'site/error404');
             Router::dispatch();
+            return;
         }
     }
 
@@ -121,4 +122,13 @@ class Router
     {
         return preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
     }    
+    
+    /**
+     * Crop URL
+     */
+    public static function cropUrl($url) 
+    {
+        $uri = explode('?', $url);
+        return urldecode($uri[0]);
+    }  
 }
