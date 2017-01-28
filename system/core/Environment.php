@@ -4,11 +4,6 @@ namespace Frm\Core;
 
 class Environment
 {
-    public function run() 
-    {     
-        Router::addRoute(Config::getInstance('routes'));
-        Router::dispatch();
-    }
 
     /**
      * 
