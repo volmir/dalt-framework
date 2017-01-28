@@ -2,25 +2,21 @@
 
 namespace Frm\Core;
 
-use Frm\Core\Config;
+use Frm\Core\Application;
 use Frm\Core\View;
 
-class Controller {
+class Controller
+{
 
     /**
      *
      * @var View 
      */
     public $view;
-    /**
-     *
-     * @var array 
-     */
-    public $config; 
 
     public function __construct() 
     {
-        $this->config = Config::getInstance();
+        $this->request = Request::getInstance();               
         $this->view = new View($this);
     }
 

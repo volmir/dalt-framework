@@ -47,7 +47,7 @@ class Router
     public static function dispatch($requestedUrl = null) 
     {
         if ($requestedUrl === null) {
-            $requestedUrl = self::cropUrl($_SERVER["REQUEST_URI"]);
+            $requestedUrl = self::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
             self::$params = self::splitUrl($requestedUrl);
         }
 
@@ -90,7 +90,7 @@ class Router
         } catch (CoreException $e) {
             $e->logError();
             Response::sendHeader("HTTP/1.0 404 Not Found");            
-            Router::addRoute(self::cropUrl($_SERVER["REQUEST_URI"]), 'site/error404');
+            Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
             Router::dispatch();
             return;
         }      
@@ -107,7 +107,7 @@ class Router
         } catch (CoreException $e) {
             $e->logError();
             Response::sendHeader("HTTP/1.0 404 Not Found");             
-            Router::addRoute(self::cropUrl($_SERVER["REQUEST_URI"]), 'site/error404');
+            Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
             Router::dispatch();
             return;
         }

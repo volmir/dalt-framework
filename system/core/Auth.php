@@ -38,7 +38,7 @@ class Auth {
      * 
      * @return mixed
      */
-    public static function getLogin() {
+    public static function getUser() {
         if (self::isAuth()) {
             return $_SESSION["login"];
         } else {

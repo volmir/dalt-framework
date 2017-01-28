@@ -9,7 +9,7 @@ class Config
      * 
      * @var Config
      */
-    protected static $instance = null;
+    private static $instance = null;
     /**
      *
      * @var string 
@@ -20,7 +20,7 @@ class Config
      * Returns instance of config
      * @return config
      */
-    public static function getInstance($config = 'main') 
+    public static function getInstance($config = 'db') 
     {
         if (!isset(self::$instance[$config])) {
             self::$instance[$config] = self::parce($config);

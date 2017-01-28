@@ -42,7 +42,9 @@ use Frm\Core\Auth;
                         <?php if (Auth::isAuth()) { ?>
                         <li class="restricted-area">
                             <button type="button" class="btn btn-default btn-sm">
-                                <a href="/login/logout/"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                                <a href="/login/logout/"><span class="glyphicon glyphicon-log-in"></span> 
+                                    Logout [<?php echo Auth::getUser(); ?>]
+                                </a>
                             </button>
                         </li>
                         <?php } else { ?>

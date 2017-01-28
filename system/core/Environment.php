@@ -2,6 +2,8 @@
 
 namespace Frm\Core;
 
+use Frm\Core\Request;
+
 class Environment
 {
 
@@ -12,7 +14,7 @@ class Environment
     public static function get() 
     {
         $environment = 'local';     
-        if ($_SERVER['SERVER_ADDR'] != '127.0.0.1') {
+        if (Request::getInstance()->server['SERVER_ADDR'] != '127.0.0.1') {
             $environment = 'production'; 
         }        
         return $environment;
