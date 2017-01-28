@@ -8,12 +8,7 @@ class View {
      * 
      * @var string
      */
-    protected $header_templete = '../../layout/header';
-    /**
-     * 
-     * @var string
-     */
-    protected $footer_templete = '../../layout/footer';
+    protected $layout_template = '../../views/layouts/main';
     /**
      *
      * @var string
@@ -35,10 +30,12 @@ class View {
      */
     public $vars = array();    
 
-    public function __construct($controller) {        
+    public function __construct($controller) 
+    {        
         $this->controller = $controller;
-        $path = strtolower(str_replace('Controller', '', get_class($controller)));
-        $this->path = __DIR__ . '/../../application/controllers/' . $path . '/';        
+        $controller_path = explode('\\', get_class($controller));
+        $path = strtolower(str_replace('Controller', '', array_pop($controller_path)));
+        $this->path = __DIR__ . '/../../application/views/' . $path . '/';        
     }
     
     public function __get($name)
@@ -65,7 +62,8 @@ class View {
      * @param variable name $name
      * @param variable value $value
      */
-    public function set($name, $value) {
+    public function set($name, $value) 
+    {
         $this->vars[$name] = $value;
     }
 
@@ -73,7 +71,8 @@ class View {
      * Clear view data
      *
      */
-    public function clear() {
+    public function clear() 
+    {
         unset($this->vars);
     }
 
@@ -83,7 +82,8 @@ class View {
      * @param filename $template
      * @return text
      */
-    public function parse($template) {
+    public function parse($template) 
+    {
         $template = $template . $this->template_extention;
         if (file_exists($this->path . $template)) {
             if (count($this->vars)) {
@@ -106,13 +106,10 @@ class View {
      *
      * @param filename $template
      */
-    public function render($template) {
-        $content = '';       
-        $content .= $this->parse($this->header_templete);
-        $content .= $this->parse($template);
-        $content .= $this->parse($this->footer_templete);
-        
-        echo $content;
+    public function render($template) 
+    {
+        $this->set('content', $this->parse($template));
+        echo $this->parse($this->layout_template);
     }
     
     /**
@@ -120,7 +117,8 @@ class View {
      *
      * @param filename $template
      */
-    public function render_partial($template) {
+    public function render_partial($template) 
+    {
         echo $this->parse($template);
     }    
 }

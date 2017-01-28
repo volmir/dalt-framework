@@ -4,7 +4,8 @@
     "homepage": "https://github.com/volmir/simple-framework",    
     "autoload": {
         "psr-4": {
-            "Frm\\": "/system/"
+            "Frm\\": "/system/",
+            "App\\": "/application/"
         }
     }
 }

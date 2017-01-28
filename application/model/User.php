@@ -1,6 +1,6 @@
 <?php
 
-namespace Frm\Model;
+namespace App\Model;
 
 use Frm\Core\Model;
 use Frm\Core\DB;

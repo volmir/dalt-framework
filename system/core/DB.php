@@ -3,7 +3,7 @@
 namespace Frm\Core;
 
 use Frm\Core\Config;
-use Frm\Core\Application;
+use Frm\Core\Environment;
 
 class DB 
 {
@@ -19,13 +19,8 @@ class DB
                 \PDO::ATTR_EMULATE_PREPARES => TRUE
             );
             
-            $config = Config::getInstance('db');
-            if (Application::isProduction()) {
-                $config = $config['production'];
-            } else {
-                $config = $config['local'];
-            } 
-            
+            $config = Config::getInstance('db')[Environment::get()];
+
             $dsn = 'mysql:host=' . $config['dbHost'] . ';dbname=' . $config['dbDbname'] . ';charset=utf8';
             self::$instance = new \PDO($dsn, $config['dbUser'], $config['dbPassword'], $opt);
         }

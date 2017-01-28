@@ -22,13 +22,12 @@ use Frm\Core\Auth;
 
         <script src="/js/scripts.js"></script>    
 
-        <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
         <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
 
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
             <div class="container">
 
                 <div class="header">
@@ -55,7 +54,7 @@ use Frm\Core\Auth;
                         <?php } ?>
                     </ul>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-pencil"></span> Task Manager</a>
+                        <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-book"></span> Simple Framework</a>
                     </div>
                 </div>          
 
@@ -64,4 +63,14 @@ use Frm\Core\Auth;
 
         <!-- Begin page content -->
         <div class="container">
+<?php echo $content; ?>    
+        </div>
 
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Copyright &copy; <?php echo date('Y'); ?></p>
+      </div>
+    </div>
+
+</body>
+</html>

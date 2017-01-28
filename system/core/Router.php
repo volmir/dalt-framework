@@ -80,11 +80,9 @@ class Router
     public static function executeAction() 
     {     
         $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
-        $controller_path = __DIR__ . "/../../application/controllers/" . strtolower($controller_name) . "/" . $controller_name . 'Controller.php';
         try {
-            if (file_exists($controller_path)) {
-                include_once $controller_path;
-                $controller_class = $controller_name . 'Controller';
+            $controller_class = '\App\Controllers\\' . $controller_name . 'Controller';
+            if (class_exists($controller_class)) {
                 $controller = new $controller_class;
             } else {
                 throw new CoreException('Controller "' . $controller_name . '" not exists');

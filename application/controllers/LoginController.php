@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use Frm\Core\Controller;
 use Frm\Core\Auth;
 use Frm\Core\Response;

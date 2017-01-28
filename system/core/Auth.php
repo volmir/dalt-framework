@@ -2,7 +2,7 @@
 
 namespace Frm\Core;
 
-use Frm\Model\User;
+use App\Model\User;
 
 class Auth {
     

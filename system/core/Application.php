@@ -13,16 +13,4 @@ class Application
         Router::dispatch();
     }
 
-    /**
-     * 
-     * @return boolean
-     */
-    public static function isProduction() 
-    {
-        $result = false;     
-        if ($_SERVER['SERVER_ADDR'] != '127.0.0.1') {
-            $result = true;
-        }        
-        return $result;
-    }
 }
