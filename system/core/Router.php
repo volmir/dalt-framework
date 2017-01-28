@@ -5,7 +5,7 @@ namespace Frm\Core;
 use Frm\Core\Request;
 use Frm\Core\Response;
 use Frm\Core\Application;
-use Frm\Core\Exception\CoreException;
+use Frm\Exception\CoreException;
 
 class Router
 {

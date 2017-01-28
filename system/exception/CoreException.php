@@ -1,6 +1,6 @@
 <?php
 
-namespace Frm\Core\Exception;
+namespace Frm\Exception;
  
 class CoreException extends \Exception 
 {

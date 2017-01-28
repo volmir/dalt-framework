@@ -2,6 +2,8 @@
 
 namespace Frm\Core;
 
+use Frm\Exception\CoreException;
+
 class Config 
 {
 
@@ -35,11 +37,15 @@ class Config
      */
     private static function parce($filename) 
     {
-        $filepath = __DIR__ . self::$configPath . $filename . '.ini';
-        if (file_exists($filepath)) {
-            $result = parse_ini_file($filepath, true);
-        } else {
-            throw new \Exception('File "' . $filepath . '" not exists');
+        try {
+            $filepath = __DIR__ . self::$configPath . $filename . '.ini';
+            if (file_exists($filepath)) {
+                $result = parse_ini_file($filepath, true);
+            } else {
+                throw new CoreException('File "' . $filepath . '" not exists');
+            }
+        } catch (CoreException $e) {
+            $e->logError();
         }
         return $result;
     }    

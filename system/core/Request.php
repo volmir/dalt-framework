@@ -2,7 +2,7 @@
 
 namespace Frm\Core;
 
-use Frm\Core\Exception\CoreException;
+use Frm\Exception\CoreException;
 
 class Request 
 {
