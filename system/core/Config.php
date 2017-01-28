@@ -16,7 +16,7 @@ class Config
      *
      * @var string 
      */
-    private static $configPath = '/../../application/config/';
+    private static $configPath = '/../../application/configs/';
 
     /**
      * Returns instance of config
