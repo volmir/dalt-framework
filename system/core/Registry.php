@@ -5,7 +5,7 @@ namespace Frm\Core;
 class Registry 
 {
 
-    private $registry = array();
+    protected $registry = array();
 
     public function __construct($registry = array()) 
     {
