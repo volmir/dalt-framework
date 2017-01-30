@@ -12,4 +12,3 @@ $loader->addPsr4('App\\', __DIR__ . '/../application/');
 
 $appication = new \Frm\Core\Application();
 $appication->run();
-
