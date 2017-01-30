@@ -13,7 +13,7 @@ class Environment
      */
     public static function get() 
     {
-        $environment = 'local';     
+        $environment = 'development';     
         if (Request::getInstance()->server['SERVER_ADDR'] != '127.0.0.1') {
             $environment = 'production'; 
         }        
