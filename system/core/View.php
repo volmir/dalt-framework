@@ -2,6 +2,8 @@
 
 namespace Frm\Core;
 
+use Frm\Exception\CoreException;
+
 class View {
 
     /**
@@ -40,8 +42,7 @@ class View {
     
     public function __get($name)
     {
-        if (property_exists($this->controller,$name))
-        {
+        if (property_exists($this->controller,$name)) {
             return $this->controller->{$name};
         }
         
@@ -50,8 +51,7 @@ class View {
     
     public function __call($name, $arguments)
     {
-        if (method_exists($this->controller, $name))
-        {
+        if (method_exists($this->controller, $name)) {
             return $this->controller->{$name}($arguments[0]);
         }
     }    
@@ -66,6 +66,20 @@ class View {
     {
         $this->vars[$name] = $value;
     }
+    
+    /**
+     * 
+     * @param string $name
+     * @return mixed
+     */
+    public function getVar($name) 
+    {
+        if (isset($this->vars[$name])) {
+            return $this->vars[$name];
+        }
+        
+        return null;        
+    }    
 
     /**
      * Clear view data
@@ -97,7 +111,7 @@ class View {
 
             return $output;
         } else {
-            throw new \Exception('The template file "' . $this->path . $template . '" does not exist');
+            throw new \CoreException('The template file "' . $this->path . $template . '" does not exist');
         }
     }
 
