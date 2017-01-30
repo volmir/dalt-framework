@@ -45,7 +45,7 @@ class Benchmark
             return '';
         }
         if (!isset($this->marker[$point2])) {
-            $this->marker[$point2] = microtime(TRUE);
+            $this->marker[$point2] = microtime(true);
         }
         
         return number_format($this->marker[$point2] - $this->marker[$point1], $decimals);

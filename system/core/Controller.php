@@ -2,8 +2,8 @@
 
 namespace Frm\Core;
 
-use Frm\Core\Application;
 use Frm\Core\View;
+use Frm\Core\Request;
 
 class Controller
 {
