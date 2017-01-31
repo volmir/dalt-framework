@@ -1,13 +1,16 @@
 <?php
 
 namespace Frm\Exception;
+
+use Frm\Core\Logger;
  
 class CoreException extends \Exception 
 {
 
     public function logError() 
-    {
-        //echo $this->getMessage();
+    {      
+        $logger = new Logger();
+        $logger->warning($this->getMessage());
     }
 
 }

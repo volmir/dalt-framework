@@ -1,7 +1,10 @@
 {
     "name": "volmir/simple-framework",
     "description": "Simple PHP Framework",
-    "homepage": "https://github.com/volmir/simple-framework",    
+    "homepage": "https://github.com/volmir/simple-framework",   
+    "require": {
+        "psr/log": "~1.0"
+    },
     "autoload": {
         "psr-4": {
             "Frm\\": "/system/",
