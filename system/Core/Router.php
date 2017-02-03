@@ -90,10 +90,8 @@ class Router
             }
         } catch (CoreException $e) {
             $e->logError();
-            Response::sendHeader("HTTP/1.0 404 Not Found");            
-            Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
-            Router::dispatch();
-            return;
+            self::error404();            
+            return false;
         }      
 
         $action = (isset(self::$params[1]) ? self::$params[1] : self::DEFAULT_ACTION) . 'Action';
@@ -107,10 +105,7 @@ class Router
             }
         } catch (CoreException $e) {
             $e->logError();
-            Response::sendHeader("HTTP/1.0 404 Not Found");             
-            Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
-            Router::dispatch();
-            return;
+            self::error404();
         }
     }
 
@@ -129,5 +124,17 @@ class Router
     {
         $uri = explode('?', $url);
         return urldecode($uri[0]);
-    }  
+    } 
+    
+    /**
+     * 
+     * @return type
+     */
+    public static function error404()
+    {
+        Response::sendHeader("HTTP/1.0 404 Not Found");
+        Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
+        Router::dispatch();
+    }
+
 }
