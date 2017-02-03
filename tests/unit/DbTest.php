@@ -1,7 +1,5 @@
 <?php
 
-require 'autoload.php';
-
 use Frm\Core\DB;
  
 class DbTest extends PHPUnit_Framework_TestCase

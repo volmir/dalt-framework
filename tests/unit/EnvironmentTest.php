@@ -1,15 +1,17 @@
 <?php
 
-require 'autoload.php';
-
 use Frm\Core\Environment;
  
 class EnvironmentTest extends PHPUnit_Framework_TestCase
 {
-
-    public function testDevelopmentEnvironment() 
+    
+    protected function setUp()
     {
         $_SERVER['SERVER_ADDR'] = '127.0.0.1';
+    }    
+
+    public function testDevelopmentEnvironment() 
+    {        
         $this->assertEquals('development', Environment::get());
     } 
 

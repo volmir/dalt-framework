@@ -1,7 +1,5 @@
 <?php
 
-require 'autoload.php';
-
 use Frm\Core\Router;
  
 class RouterTest extends PHPUnit_Framework_TestCase

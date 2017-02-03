@@ -1,7 +1,5 @@
 <?php
 
-require 'autoload.php';
-
 use Frm\Core\View;
 use Frm\Exception\CoreException;
  

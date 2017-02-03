@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-xs-8 col-md-6">
       
-<form class="form-horizontal" role="form" method="post" action="/login/" data-toggle="validator">
+<form class="form-horizontal" role="form" method="post" id="loginForm" action="/login/" data-toggle="validator">
   <div class="form-group">
     <label for="inputLogin" class="col-sm-2 control-label">Login</label>
     <div class="col-sm-10">

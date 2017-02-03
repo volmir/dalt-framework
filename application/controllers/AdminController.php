@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
 use Frm\Core\Controller;
 use Frm\Core\Response;

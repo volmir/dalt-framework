@@ -33,7 +33,7 @@ use Frm\Core\Auth;
                 <div class="header">
                     <ul class="nav nav-pills pull-right restricted-area">
                         <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>               
+                        <li><a href="/contact" id="contact">Contact</a></li>               
                         <li class="restricted-area"><button type="button" class="btn btn-default btn-sm">
                                 <a href="/admin"><span class="glyphicon glyphicon-edit"></span> Admin zone</a>
                             </button>
@@ -42,7 +42,7 @@ use Frm\Core\Auth;
                         <?php if (Auth::isAuth()) { ?>
                         <li class="restricted-area">
                             <button type="button" class="btn btn-default btn-sm">
-                                <a href="/login/logout/"><span class="glyphicon glyphicon-log-in"></span> 
+                                <a href="/login/logout/" id="logout"><span class="glyphicon glyphicon-log-in"></span> 
                                     Logout [<?php echo Auth::getUser(); ?>]
                                 </a>
                             </button>
@@ -50,7 +50,7 @@ use Frm\Core\Auth;
                         <?php } else { ?>
                         <li class="restricted-area">
                             <button type="button" class="btn btn-default btn-sm">
-                                <a href="/login/"><span class="glyphicon glyphicon-log-out"></span> Login</a>
+                                <a href="/login/" id="login"><span class="glyphicon glyphicon-log-out"></span> Login</a>
                             </button>
                         </li>
                         <?php } ?>

@@ -80,8 +80,9 @@ class Router
     public static function executeAction() 
     {     
         $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
+        $controller_name = ucfirst($controller_name);      
         try {
-            $controller_class = '\App\Controllers\\' . $controller_name . 'Controller';
+            $controller_class = '\App\controllers\\' . $controller_name . 'Controller';
             if (class_exists($controller_class)) {
                 $controller = new $controller_class;
             } else {
