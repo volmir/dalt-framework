@@ -1,6 +1,6 @@
 <?php
 
-namespace Frm\Logger;
+namespace frm\logger;
 
 use DateTime;
 use ReflectionClass;

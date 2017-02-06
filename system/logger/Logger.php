@@ -1,11 +1,11 @@
 <?php
 
-namespace Frm\Logger;
+namespace frm\logger;
 
 use Iterator;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
-use Frm\Logger\Route;
+use frm\logger\Route;
 
 /**
  * 

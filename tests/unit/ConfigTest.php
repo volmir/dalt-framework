@@ -1,6 +1,6 @@
 <?php
 
-use Frm\Core\Config;
+use frm\core\Config;
  
 class ConfigTest extends PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
-use Frm\Core\Request;
+use frm\core\Request;
 
 class Environment
 {

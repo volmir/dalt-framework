@@ -1,6 +1,6 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
 class Benchmark 
 {

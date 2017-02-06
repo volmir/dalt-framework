@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace app\models;
 
-use Frm\Core\Model;
-use Frm\Core\DB;
+use frm\core\Model;
+use frm\core\DB;
 
 class User extends Model 
 {

@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 
  
 $loader = require(__DIR__ . '/../vendor/autoload.php');
-$loader->addPsr4('Frm\\', __DIR__ . '/../system/');
-$loader->addPsr4('App\\', __DIR__ . '/../application/');
+$loader->addPsr4('frm\\', __DIR__ . '/../system/');
+$loader->addPsr4('app\\', __DIR__ . '/../application/');
 
-$appication = new \Frm\Core\Application();
+$appication = new \frm\core\Application();
 $appication->run();

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use Frm\Core\Controller;
+use frm\core\Controller;
 
 class BlogController extends Controller 
 {

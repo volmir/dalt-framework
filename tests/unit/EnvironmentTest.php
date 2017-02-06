@@ -1,6 +1,6 @@
 <?php
 
-use Frm\Core\Environment;
+use frm\core\Environment;
  
 class EnvironmentTest extends PHPUnit_Framework_TestCase
 {

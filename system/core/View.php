@@ -1,8 +1,8 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
-use Frm\Exception\CoreException;
+use frm\coreception\CoreException;
 
 class View {
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Frm\Logger\Routes;
+namespace frm\logger\routes;
 
-use Frm\Logger\Route;
+use frm\logger\Route;
 use Psr\Log\LogLevel;
 
 /**

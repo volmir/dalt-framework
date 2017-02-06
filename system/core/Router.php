@@ -1,11 +1,11 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
-use Frm\Core\Request;
-use Frm\Core\Response;
-use Frm\Core\Application;
-use Frm\Exception\CoreException;
+use frm\core\Request;
+use frm\core\Response;
+use frm\core\Application;
+use frm\exception\CoreException;
 
 class Router
 {
@@ -82,7 +82,7 @@ class Router
         $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
         $controller_name = ucfirst($controller_name);      
         try {
-            $controller_class = '\App\controllers\\' . $controller_name . 'Controller';
+            $controller_class = '\app\controllers\\' . $controller_name . 'Controller';
             if (class_exists($controller_class)) {
                 $controller = new $controller_class;
             } else {

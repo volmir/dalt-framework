@@ -1,10 +1,10 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
-use Frm\Core\Request;
-use Frm\Core\View;
-use Frm\Core\Benchmark;
+use frm\core\Request;
+use frm\core\View;
+use frm\core\Benchmark;
 
 class Controller
 {

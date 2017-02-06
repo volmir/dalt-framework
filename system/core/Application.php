@@ -1,9 +1,9 @@
 <?php
 
-namespace Frm\Core;
+namespace frm\core;
 
-use Frm\Core\Config;
-use Frm\Core\Router;
+use frm\core\Config;
+use frm\core\Router;
 
 class Application 
 {

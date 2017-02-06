@@ -1,10 +1,10 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use Frm\Core\Controller;
-use Frm\Core\Response;
-use Frm\Core\Auth;
+use frm\core\Controller;
+use frm\core\Response;
+use frm\core\Auth;
 
 class AdminController extends Controller {
     

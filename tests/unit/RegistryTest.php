@@ -1,6 +1,6 @@
 <?php
 
-use Frm\Core\Registry;
+use frm\core\Registry;
  
 class RegistryTest extends PHPUnit_Framework_TestCase
 {

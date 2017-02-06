@@ -1,6 +1,6 @@
 <?php
 
-use Frm\Core\Router;
+use frm\core\Router;
  
 class RouterTest extends PHPUnit_Framework_TestCase
 {

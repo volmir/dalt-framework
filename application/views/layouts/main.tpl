@@ -1,6 +1,6 @@
 <?php
 
-use Frm\Core\Auth;
+use frm\core\Auth;
 
 ?><!DOCTYPE html>
 <html lang="en-US">

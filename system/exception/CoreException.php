@@ -1,8 +1,8 @@
 <?php
 
-namespace Frm\Exception;
+namespace frm\exception;
 
-use Frm\Core\Logger;
+use frm\core\Logger;
  
 class CoreException extends \Exception 
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use Frm\Core\Controller;
-use Frm\Core\Auth;
-use Frm\Core\Response;
+use frm\core\Controller;
+use frm\core\Auth;
+use frm\core\Response;
 
 class LoginController extends Controller 
 {

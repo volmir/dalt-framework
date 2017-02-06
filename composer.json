@@ -8,7 +8,7 @@
     "autoload": {
         "psr-4": {
             "Frm\\": "/system/",
-            "App\\": "/application/"
+            "app\\": "/application/"
         }
     }
 }
