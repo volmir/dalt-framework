@@ -2,8 +2,9 @@
 
 namespace frm\core;
 
-use frm\core\Config;
+use frm\core\Registry;
 use frm\core\Router;
+use frm\core\Environment;
 
 class Application 
 {
@@ -14,9 +15,11 @@ class Application
      */
     public function run($config = []) 
     {           
-        $this->config = Config::getInstance($config);
+        $this->config = new Registry($config);
         
-        Router::addRoute($this->config['routes']);
+        define('DB', $this->config->db[Environment::get()]);
+        
+        Router::addRoute($this->config->routes);
         Router::dispatch();
         Router::execute();
     }

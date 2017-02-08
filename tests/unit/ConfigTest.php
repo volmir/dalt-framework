@@ -1,6 +1,6 @@
 <?php
 
-use frm\core\Config;
+use frm\core\Registry;
  
 class ConfigTest extends PHPUnit_Framework_TestCase
 {
@@ -8,7 +8,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->configPath = 'application/config/main.php';
-        $this->config = require(__DIR__ . '/../../' . $this->configPath);
+        $config = require(__DIR__ . '/../../' . $this->configPath);
+        $this->config = new Registry($config);        
     }       
 
     public function testFilesExists()
@@ -18,7 +19,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     
     public function testIsRightType() 
     {
-        $this->assertInternalType('array', Config::getInstance($this->config));
+        $this->assertInternalType('array', $this->config->db);
     }
 
 }

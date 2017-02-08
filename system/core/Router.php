@@ -113,7 +113,7 @@ class Router
      */
     public static function error404()
     {
-        Response::sendHeader("HTTP/1.0 404 Not Found");
+        Response::sendHeader("HTTP/1.1 404 Not Found");
         Router::addRoute(Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
         Router::dispatch();
         Router::execute();

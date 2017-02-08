@@ -10,14 +10,12 @@ return [
             'username' => 'root',
             'password' => 'asjD843Kmlf',
             'dbname' => 'test',
-            'charset' => 'utf8',
         ],
         'production' => [
             'host' => 'localhost',
             'username' => 'root',
             'password' => '',
-            'dbname' => '',
-            'charset' => 'utf8',
+            'dbname' => 'test',
         ],        
     ],
     'routes' => [

@@ -2,9 +2,6 @@
 
 namespace frm\core;
 
-use frm\core\Config;
-use frm\core\Environment;
-
 class DB 
 {
 
@@ -18,11 +15,8 @@ class DB
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
                 \PDO::ATTR_EMULATE_PREPARES => TRUE
             );
-            
-            $config = Config::getInstance()['db'][Environment::get()];
-             
-            $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
-            self::$instance = new \PDO($dsn, $config['username'], $config['password'], $opt);
+            $dsn = 'mysql:host=' . DB['host'] . ';dbname=' . DB['dbname'] . ';charset=utf8';
+            self::$instance = new \PDO($dsn, DB['username'], DB['password'], $opt);
         }
         return self::$instance;
     }
