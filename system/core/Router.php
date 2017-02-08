@@ -5,6 +5,7 @@ namespace frm\core;
 use frm\core\Request;
 use frm\core\Response;
 use frm\core\Application;
+use frm\core\Url;
 use frm\exception\CoreException;
 
 class Router
@@ -47,13 +48,13 @@ class Router
     public static function dispatch($requestedUrl = null) 
     {
         if ($requestedUrl === null) {
-            $requestedUrl = self::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
-            self::$params = self::splitUrl($requestedUrl);
+            $requestedUrl = Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
+            self::$params = Url::splitUrl($requestedUrl);
         }
 
         if (isset(self::$routes[$requestedUrl])) {
-            self::$params = self::splitUrl(self::$routes[$requestedUrl]);
-            return self::executeAction();
+            self::$params = Url::splitUrl(self::$routes[$requestedUrl]);
+            return true;
         }       
         
         foreach (self::$routes as $route => $uri) {
@@ -65,19 +66,17 @@ class Router
                 if (strpos($uri, '$') !== false && strpos($route, '(') !== false) {
                     $uri = preg_replace('#^' . $route . '$#', $uri, $requestedUrl);
                 }
-                self::$params = self::splitUrl($uri);
+                self::$params = Url::splitUrl($uri);
 
                 break; 
             }
         }
-        
-        return self::executeAction();
     }
 
     /**
      * Run the application controller/action/parameters
      */
-    public static function executeAction() 
+    public static function execute() 
     {     
         $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
         $controller_name = ucfirst($controller_name);      
@@ -108,33 +107,16 @@ class Router
             self::error404();
         }
     }
-
-    /**
-     * Divide the URL submitted to the components
-     */
-    public static function splitUrl($url) 
-    {
-        return preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
-    }    
-    
-    /**
-     * Crop URL
-     */
-    public static function cropUrl($url) 
-    {
-        $uri = explode('?', $url);
-        return urldecode($uri[0]);
-    } 
     
     /**
      * 
-     * @return type
      */
     public static function error404()
     {
         Response::sendHeader("HTTP/1.0 404 Not Found");
-        Router::addRoute(self::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
+        Router::addRoute(Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
         Router::dispatch();
+        Router::execute();
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace frm\core;
 
-use frm\coreception\CoreException;
+use frm\exception\CoreException;
 
 class Config 
 {
@@ -12,43 +12,21 @@ class Config
      * @var Config
      */
     private static $instance = null;
-    /**
-     *
-     * @var string 
-     */
-    private static $configPath = '/../../application/configs/';
 
     /**
      * Returns instance of config
-     * @return config
+     * 
+     * @param array $config
+     * @return array
      */
-    public static function getInstance($config = 'db') 
+    public static function getInstance($config = '') 
     {
-        if (!isset(self::$instance[$config])) {
-            self::$instance[$config] = self::parce($config);
+        if (!isset(self::$instance)) {
+            self::$instance = $config;
         }    
         
-        return self::$instance[$config];
-    }
-    
-    /**
-     * Returns instance of config
-     * @return config filename
-     */
-    private static function parce($filename) 
-    {
-        try {
-            $filepath = __DIR__ . self::$configPath . $filename . '.ini';
-            if (file_exists($filepath)) {
-                $result = parse_ini_file($filepath, true);
-            } else {
-                throw new CoreException('File "' . $filepath . '" not exists');
-            }
-        } catch (CoreException $e) {
-            $e->logError();
-        }
-        return $result;
-    }    
+        return self::$instance;
+    }  
     
     private function __construct() 
     {

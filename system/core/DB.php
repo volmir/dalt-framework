@@ -19,10 +19,10 @@ class DB
                 \PDO::ATTR_EMULATE_PREPARES => TRUE
             );
             
-            $config = Config::getInstance('db')[Environment::get()];
-
-            $dsn = 'mysql:host=' . $config['dbHost'] . ';dbname=' . $config['dbDbname'] . ';charset=utf8';
-            self::$instance = new \PDO($dsn, $config['dbUser'], $config['dbPassword'], $opt);
+            $config = Config::getInstance()['db'][Environment::get()];
+             
+            $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
+            self::$instance = new \PDO($dsn, $config['username'], $config['password'], $opt);
         }
         return self::$instance;
     }

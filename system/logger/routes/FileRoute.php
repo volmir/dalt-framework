@@ -37,7 +37,7 @@ class FileRoute extends Route
      */
     public function log($level, $message, array $context = []) {
         file_put_contents(
-            $this->filePath . $level . '.log', 
+            $this->filePath . date('Y-m-d.') . $level . '.log', 
             trim(strtr($this->template, [
                 '{date}' => $this->getDate(),
                 '{level}' => $level,

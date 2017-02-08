@@ -3,7 +3,6 @@
 namespace app\models;
 
 use frm\core\Model;
-use frm\core\DB;
 
 class User extends Model 
 {

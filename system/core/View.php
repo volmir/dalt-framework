@@ -2,7 +2,7 @@
 
 namespace frm\core;
 
-use frm\coreception\CoreException;
+use frm\exception\CoreException;
 
 class View {
 

@@ -18,16 +18,17 @@ class BlogController extends Controller
         $this->view->render('index');
     }   
     
-    public function viewBlogAction($userId) 
+    public function viewBlogAction($userName) 
     {        
         echo __FILE__ . ' - ' . __METHOD__ . '<br>';
-        var_dump($userId);
+        var_dump($userName);
     }    
     
-    public function viewPostAction($id) 
+    public function viewPostAction($userName, $postId) 
     {        
         echo __FILE__ . ' - ' . __METHOD__ . '<br>';
-        var_dump($id);
+        var_dump($userName);
+        var_dump($postId);
     }        
     
 }

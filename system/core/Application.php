@@ -8,10 +8,17 @@ use frm\core\Router;
 class Application 
 {
 
-    public function run() 
-    {                 
-        Router::addRoute(Config::getInstance('routes'));
+    /**
+     * 
+     * @param array $config
+     */
+    public function run($config = []) 
+    {           
+        $this->config = Config::getInstance($config);
+        
+        Router::addRoute($this->config['routes']);
         Router::dispatch();
+        Router::execute();
     }
 
 }

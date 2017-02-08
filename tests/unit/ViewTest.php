@@ -1,7 +1,7 @@
 <?php
 
 use frm\core\View;
-use frm\coreception\CoreException;
+use frm\exception\CoreException;
  
 class ViewTest extends PHPUnit_Framework_TestCase
 {
