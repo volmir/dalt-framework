@@ -72,9 +72,16 @@ use frm\core\Auth;
         <div id="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p class="text-muted">Copyright &copy; <?php echo date('Y'); ?></p>
                     </div>
+                    <div class="col-md-6">
+                        <p class="text-muted text-right">
+                            <small>
+                                Generated for <?php echo $this->app->benchmark->elapsedTime('begin', 'end'); ?> sec.
+                            </small>
+                        </p>
+                    </div>                    
                 </div> 
             </div>
         </div>

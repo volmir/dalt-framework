@@ -4,7 +4,8 @@ namespace frm\core;
 
 use frm\exception\CoreException;
 
-class View {
+class View 
+{
 
     /**
      * 
@@ -30,7 +31,7 @@ class View {
      *
      * @var array
      */
-    public $vars = array();    
+    public $vars = [];    
 
     public function __construct($controller) 
     {        
