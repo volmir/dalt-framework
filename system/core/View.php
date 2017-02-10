@@ -15,7 +15,7 @@ class View {
      *
      * @var string
      */
-    protected $template_extention = '.tpl';    
+    protected $template_extention = '.htm';    
     /**
      * 
      * @var Controller

@@ -36,13 +36,13 @@ class Logger extends SystemLogger
         ]));
 
         $this->routes->attach(new DatabaseRoute([
-            'enabled' => true,
+            'enabled' => false,
             'db' => DB::getInstance(),
             'table' => 'log',
         ]));
 
         $this->routes->attach(new SyslogRoute([
-            'enabled' => true,
+            'enabled' => false,
         ]));
     }
 

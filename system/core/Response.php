@@ -8,46 +8,68 @@ class Response
      *
      * @var array
      */
-    private $headers = [];
-
-    /**
+    protected $headers = [];
+    /** 
      * 
-     * @param string $name
-     * @param string $value
+     * @var mixed 
      */
-    public function addHeader($name, $value)
-    {
-        $this->headers[$name][] = $value;
-    }
+    protected $content;
+  
 
     /**
+     * @param string $content
+     */
+    public function setContent($content = '')
+    {
+        $this->content = $content;
+    }    
+    
+    /**
      * 
-     * @param string $name
      * @param string $value
      */    
-    public function setHeader($name, $value)
+    public function setHeader($value)
     {
-        $this->headers[$name] = [
-            (string) $value,
-        ];
-    }
+        $this->headers[] = (string) $value;
+    }  
     
     /**
      * 
-     * @param string $header
+     * @return mixed
      */
-    public static function sendHeader($header) 
+    public function getContent()
     {
-        header($header);
-    } 
-    
+        return $this->content;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * 
+     * @return void
+     */
+    public function sendHeaders()
+    {
+        foreach ($this->headers as $header) {
+            header($header);
+        }
+    }      
+
     /**
      * 
      * @param string $url
      */
     public static function redirect($url) 
     {
-        self::sendHeader('Location: ' . $url);
-    }    
-    
+        $responce = new self();
+        $responce->setHeader('Location: ' . $url);
+        $responce->sendHeaders();
+    }     
 }

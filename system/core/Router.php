@@ -4,9 +4,7 @@ namespace frm\core;
 
 use frm\core\Request;
 use frm\core\Response;
-use frm\core\Application;
 use frm\core\Url;
-use frm\exception\CoreException;
 
 class Router
 {
@@ -22,22 +20,22 @@ class Router
      *
      * @var array
      */
-    public static $routes = array();
+    public $routes = [];
     /**
      *
      * @var array
      */
-    private static $params = array();
+    private $params = [];
 
     /**
      * Add routes
      */
-    public static function addRoute($route, $destination = null) 
+    public function addRoute($route, $destination = null) 
     {
         if ($destination != null && !is_array($route)) {
             $route = array($route => $destination);
         }
-        self::$routes = array_merge(self::$routes, $route);
+        $this->routes = array_merge($this->routes, $route);
     }
 
     /**
@@ -45,78 +43,69 @@ class Router
      * 
      * @param string $requestedUrl
      */
-    public static function dispatch($requestedUrl = null) 
+    public function dispatch($requestedUrl = null) 
     {
         if ($requestedUrl === null) {
             $requestedUrl = Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
-            self::$params = Url::splitUrl($requestedUrl);
+            $this->params = Url::splitUrl($requestedUrl);
         }
 
-        if (isset(self::$routes[$requestedUrl])) {
-            self::$params = Url::splitUrl(self::$routes[$requestedUrl]);
+        if (isset($this->routes[$requestedUrl])) {
+            $this->params = Url::splitUrl($this->routes[$requestedUrl]);
             return true;
         }       
         
-        foreach (self::$routes as $route => $uri) {
+        foreach ($this->routes as $route => $uri) {
             if (strpos($route, ':') !== false) {
                 $route = str_replace(':any', '(.+)', str_replace(':num', '([0-9]+)', $route));
             }
-
             if (preg_match('#^' . $route . '$#', $requestedUrl)) {
                 if (strpos($uri, '$') !== false && strpos($route, '(') !== false) {
                     $uri = preg_replace('#^' . $route . '$#', $uri, $requestedUrl);
                 }
-                self::$params = Url::splitUrl($uri);
-
+                $this->params = Url::splitUrl($uri);
                 break; 
             }
-        }
-    }
-
-    /**
-     * Run the application controller/action/parameters
-     */
-    public static function execute() 
-    {     
-        $controller_name = isset(self::$params[0]) ? self::$params[0] : self::DEFAULT_CONTROLLER;      
-        $controller_name = ucfirst($controller_name);      
-        try {
-            $controller_class = '\app\controllers\\' . $controller_name . 'Controller';
-            if (class_exists($controller_class)) {
-                $controller = new $controller_class;
-            } else {
-                throw new CoreException('Controller "' . $controller_name . '" not exists');
-            }
-        } catch (CoreException $e) {
-            $e->logError();
-            self::error404();            
-            return false;
-        }      
-
-        $action = (isset(self::$params[1]) ? self::$params[1] : self::DEFAULT_ACTION) . 'Action';
-        $params = array_slice(self::$params, 2);
-
-        try {
-            if (method_exists($controller, $action)) {
-                call_user_func_array(array($controller, $action), $params);
-            } else {
-                throw new CoreException('Action "' . $action . '" not exists');                
-            }
-        } catch (CoreException $e) {
-            $e->logError();
-            self::error404();
         }
     }
     
     /**
      * 
+     * @return string
      */
-    public static function error404()
+    public function getControllerName()
     {
-        Response::sendHeader("HTTP/1.1 404 Not Found");
-        Router::addRoute(Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
-        Router::dispatch();
-        Router::execute();
+        $controllerName = isset($this->params[0]) ? $this->params[0] : self::DEFAULT_CONTROLLER;
+        $controllerName = ucfirst($controllerName);         
+        return $controllerName;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getActionName()
+    {
+        $actionName = (isset($this->params[1]) ? $this->params[1] : self::DEFAULT_ACTION) . 'Action';
+        return $actionName;
+    }   
+    
+    /**
+     * 
+     * @return array
+     */
+    public function getActionParams()
+    {     
+        return array_slice($this->params, 2);
+    }    
+    
+    /**
+     * 
+     */
+    public function error404()
+    {
+        $this->addRoute(Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
+        $this->dispatch();
     }
 
 }

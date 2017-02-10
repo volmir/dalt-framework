@@ -14,8 +14,9 @@ use frm\core\Auth;
         <meta name="author" content="">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
+        <link rel="shortcut icon" href="/favicon.ico">
+
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
@@ -65,14 +66,18 @@ use frm\core\Auth;
 
         <!-- Begin page content -->
         <div class="container">
-<?php echo $content; ?>    
+            <?php echo $content; ?>    
         </div>
 
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted">Copyright &copy; <?php echo date('Y'); ?></p>
-      </div>
-    </div>
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-muted">Copyright &copy; <?php echo date('Y'); ?></p>
+                    </div>
+                </div> 
+            </div>
+        </div>
 
-</body>
+    </body>
 </html>
