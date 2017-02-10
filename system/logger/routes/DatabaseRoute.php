@@ -1,9 +1,9 @@
 <?php
-namespace frm\logger\routes;
+namespace framework\logger\routes;
 
 use PDO;
-use frm\logger\Route;
-use frm\core\DB;
+use framework\logger\Route;
+use framework\core\DB;
 
 /**
  * Class DatabaseRouter

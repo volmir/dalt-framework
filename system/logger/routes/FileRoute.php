@@ -1,8 +1,8 @@
 <?php
 
-namespace frm\logger\routes;
+namespace framework\logger\routes;
 
-use frm\logger\Route;
+use framework\logger\Route;
 
 /**
  * Class FileRoute

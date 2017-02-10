@@ -1,14 +1,14 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\core\Response;
-use frm\core\Registry;
-use frm\core\Router;
-use frm\core\Request;
-use frm\core\Environment;
-use frm\core\Controller;
-use frm\exception\CoreException;
+use framework\core\Response;
+use framework\core\Registry;
+use framework\core\Router;
+use framework\core\Request;
+use framework\core\Environment;
+use framework\core\Controller;
+use framework\exception\CoreException;
 
 class Application 
 {
@@ -26,7 +26,7 @@ class Application
      *
      * @var Response 
      */
-    public $response;
+    public $response;   
     /**
      *
      * @var Router 
@@ -42,7 +42,7 @@ class Application
         $this->benchmark = new Benchmark();        
         $this->config = new Registry($config);
         $this->response = new Response();
-        
+
         define('DB', $this->config->db[Environment::get()]);    
         
         $this->router = new Router();
@@ -56,7 +56,7 @@ class Application
     {
         $controllerName = $this->router->getControllerName();     
         try {
-            $controller_class = '\app\controllers\\' . $controllerName . 'Controller';
+            $controller_class = '\\' . $this->config->name . '\controllers\\' . $controllerName . 'Controller';
             if (class_exists($controller_class)) {
                 $controller = new $controller_class;
                 if ($controller instanceof Controller) {

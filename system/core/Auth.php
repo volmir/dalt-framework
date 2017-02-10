@@ -1,8 +1,8 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use app\models\User;
+use common\models\User;
 
 class Auth {
     

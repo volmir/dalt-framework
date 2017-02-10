@@ -1,8 +1,8 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\exception\CoreException;
+use framework\exception\CoreException;
 
 class View 
 {
@@ -11,12 +11,12 @@ class View
      * 
      * @var string
      */
-    protected $layout_template = '../../views/layouts/main';
+    protected $layoutTemplate = '../layout/main';
     /**
      *
      * @var string
      */
-    protected $template_extention = '.htm';    
+    protected $templateExtention = '.htm';    
     /**
      * 
      * @var Controller
@@ -36,36 +36,9 @@ class View
     public function __construct($controller) 
     {        
         $this->controller = $controller;
-        $controller_path = explode('\\', get_class($controller));
-        $path = strtolower(str_replace('Controller', '', array_pop($controller_path)));
-        $this->path = __DIR__ . '/../../application/views/' . $path . '/';        
-    }
-    
-    public function __get($name)
-    {
-        if (property_exists($this->controller,$name)) {
-            return $this->controller->{$name};
-        }
-        
-        return null;
-    }
-    
-    public function __call($name, $arguments)
-    {
-        if (method_exists($this->controller, $name)) {
-            return $this->controller->{$name}($arguments[0]);
-        }
-    }    
-
-    /**
-     * Set variables
-     *
-     * @param variable name $name
-     * @param variable value $value
-     */
-    public function set($name, $value) 
-    {
-        $this->vars[$name] = $value;
+        $controllerPath = explode('\\', get_class($controller));
+        $controllerName = strtolower(str_replace('Controller', '', array_pop($controllerPath)));
+        $this->path = $this->controller->app->config->basePath . '/views/' . $controllerName . '/'; 
     }
     
     /**
@@ -73,12 +46,36 @@ class View
      * @param string $name
      * @return mixed
      */
-    public function getVar($name) 
+    public function __get($name)
+    {
+        if (property_exists($this->controller, $name)) {
+            return $this->controller->{$name};
+        }        
+        return null;
+    }    
+
+    /**
+     * Set variables
+     *
+     * @param array $name
+     */
+    public function set(array $values) 
+    {
+        foreach ($values as $name => $value) {
+            $this->vars[$name] = $value;
+        }
+    }
+    
+    /**
+     * 
+     * @param string $name
+     * @return mixed
+     */
+    public function get($name) 
     {
         if (isset($this->vars[$name])) {
             return $this->vars[$name];
         }
-        
         return null;        
     }    
 
@@ -99,7 +96,7 @@ class View
      */
     public function parse($template) 
     {
-        $template = $template . $this->template_extention;
+        $template = $template . $this->templateExtention;
         if (file_exists($this->path . $template)) {
             if (count($this->vars)) {
                 extract($this->vars, EXTR_SKIP);
@@ -112,7 +109,7 @@ class View
 
             return $output;
         } else {
-            throw new \CoreException('The template file "' . $this->path . $template . '" does not exist');
+            throw new CoreException('The template file "' . $this->path . $template . '" does not exist');
         }
     }
 
@@ -123,8 +120,10 @@ class View
      */
     public function render($template) 
     {
-        $this->set('content', $this->parse($template));
-        echo $this->parse($this->layout_template);
+        $this->set([
+            'content' => $this->parse($template)
+        ]);
+        echo $this->parse($this->layoutTemplate);
     }
     
     /**

@@ -1,12 +1,12 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\core\Request;
-use frm\core\View;
-use frm\core\Benchmark;
-use frm\core\Application;
-use frm\exception\CoreException;
+use framework\core\Request;
+use framework\core\View;
+use framework\core\Benchmark;
+use framework\core\Application;
+use framework\exception\CoreException;
 
 abstract class Controller
 {
@@ -20,11 +20,11 @@ abstract class Controller
      * @var View 
      */
     public $view;
-
+    
     public function __construct() 
-    {            
-        $this->view = new View($this);
-    }
+    {
+        
+    }    
 
     /**
      * 
@@ -34,6 +34,8 @@ abstract class Controller
     public function setApplication(Application $app)
     {
         $this->app = $app;
+        $this->view = new View($this);
+
         return $this;
     }    
     

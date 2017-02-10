@@ -1,10 +1,10 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\core\Request;
-use frm\core\Response;
-use frm\core\Url;
+use framework\core\Request;
+use framework\core\Response;
+use framework\core\Url;
 
 class Router
 {

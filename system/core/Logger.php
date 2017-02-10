@@ -1,13 +1,13 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
 use SplObjectStorage;
-use frm\core\DB;
-use frm\logger\Logger as SystemLogger;
-use frm\logger\routes\FileRoute;
-use frm\logger\routes\DatabaseRoute;
-use frm\logger\routes\SyslogRoute;
+use framework\core\DB;
+use framework\logger\Logger as SystemLogger;
+use framework\logger\routes\FileRoute;
+use framework\logger\routes\DatabaseRoute;
+use framework\logger\routes\SyslogRoute;
 
 /**
  * 

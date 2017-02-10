@@ -1,6 +1,6 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
 class Url
 {

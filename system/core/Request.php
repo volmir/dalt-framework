@@ -1,8 +1,8 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\exception\CoreException;
+use framework\exception\CoreException;
 
 class Request 
 {
@@ -31,6 +31,8 @@ class Request
             try {
                 if ($name == 'server') {
                     $this->$name = isset($_SERVER) ? $_SERVER : array();
+                } elseif ($name == 'request') {
+                    $this->$name = isset($_REQUEST) ? $_REQUEST : array();                    
                 } elseif ($name == 'get') {
                     $this->$name = isset($_GET) ? $_GET : array();
                 } elseif ($name == 'post') {

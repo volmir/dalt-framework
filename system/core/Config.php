@@ -1,8 +1,8 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
-use frm\exception\CoreException;
+use framework\exception\CoreException;
 
 class Config 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace frm\core;
+namespace framework\core;
 
 class Benchmark 
 {
@@ -10,7 +10,7 @@ class Benchmark
      *
      * @var array
      */
-    public $marker = array();
+    public $marker = [];
     
     public function __construct() 
     {
