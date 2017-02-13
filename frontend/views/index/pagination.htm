@@ -1,0 +1,25 @@
+<p class="text-center">
+<?php
+
+if(isset($this->pages['prev'])){
+    echo '<a href="?page=1"><<</a>  
+            <a href="?page='.$this->pages['prev'].'"><</a>
+   ';
+}
+       
+foreach ($this->pages['pages'] as $page) {
+    $currentPageClass = '';
+    if ($page == $this->pages['current']) {
+        $currentPageClass = 'class="cur_page"';
+    }
+    echo '<a href="?page=' . $page . '" '.$currentPageClass .' >'.$page.'</a> ';
+}
+       
+if(isset($this->pages['next'])){
+    echo '<a href="?page='.$this->pages['next'].'">></a>  
+            <a href="?page='.$this->pages['last'].'">>></a>
+   ';
+}
+
+?>
+</p>

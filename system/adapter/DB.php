@@ -1,6 +1,6 @@
 <?php
 
-namespace framework\core;
+namespace framework\adapter;
 
 class DB 
 {
@@ -15,8 +15,8 @@ class DB
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
                 \PDO::ATTR_EMULATE_PREPARES => TRUE
             );
-            $dsn = 'mysql:host=' . DB['host'] . ';dbname=' . DB['dbname'] . ';charset=utf8';
-            self::$instance = new \PDO($dsn, DB['username'], DB['password'], $opt);
+            $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DBNAME . ';charset=utf8';
+            self::$instance = new \PDO($dsn, DB_USERNAME, DB_PASSWORD, $opt);
         }
         return self::$instance;
     }

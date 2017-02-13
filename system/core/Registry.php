@@ -7,7 +7,7 @@ class Registry
 
     protected $registry = array();
 
-    public function __construct($registry = array()) 
+    public function __construct($registry = []) 
     {
         $this->registry = $registry;
     }

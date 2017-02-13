@@ -26,6 +26,16 @@ class Router
      * @var array
      */
     private $params = [];
+    
+    /**
+     * 
+     * @param array $routes
+     */
+    public function __construct($routes = []) 
+    {
+        $this->addRoute($routes);
+        $this->dispatch();
+    }
 
     /**
      * Add routes
@@ -46,6 +56,7 @@ class Router
     public function dispatch($requestedUrl = null) 
     {
         if ($requestedUrl === null) {
+            $requestUri = '';
             $requestedUrl = Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
             $this->params = Url::splitUrl($requestedUrl);
         }

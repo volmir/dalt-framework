@@ -19,6 +19,16 @@ class Application
     public $benchmark;
     /**
      *
+     * @var string
+     */
+    public $environment;
+    /**
+     *
+     * @var Asset 
+     */
+    public $asset;    
+    /**
+     *
      * @var Registry 
      */
     public $config;
@@ -39,16 +49,13 @@ class Application
      */
     public function run($config = []) 
     {           
-        $this->benchmark = new Benchmark();        
+        $this->benchmark = new Benchmark();  
+        $this->environment = Environment::get();
         $this->config = new Registry($config);
         $this->response = new Response();
-
-        define('DB', $this->config->db[Environment::get()]);    
-        
-        $this->router = new Router();
-        $this->router->addRoute($this->config->routes);
-        $this->router->dispatch();
-
+        $this->assets = new Asset($this->config->assets);        
+        $this->setDbParams();  
+        $this->router = new Router($this->config->routes);
         $this->execute();
     }
 
@@ -80,4 +87,11 @@ class Application
         echo $this->response->getContent();
     }
 
+    protected function setDbParams()
+    {
+        define('DB_HOST', $this->config->db[Environment::get()]['host']);    
+        define('DB_DBNAME', $this->config->db[Environment::get()]['dbname']);    
+        define('DB_USERNAME', $this->config->db[Environment::get()]['username']);    
+        define('DB_PASSWORD', $this->config->db[Environment::get()]['password']);          
+    }
 }

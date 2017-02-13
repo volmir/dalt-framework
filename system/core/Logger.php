@@ -3,7 +3,7 @@
 namespace framework\core;
 
 use SplObjectStorage;
-use framework\core\DB;
+use framework\adapter\DB;
 use framework\logger\Logger as SystemLogger;
 use framework\logger\routes\FileRoute;
 use framework\logger\routes\DatabaseRoute;

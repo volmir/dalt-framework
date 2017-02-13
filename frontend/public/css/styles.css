@@ -58,3 +58,7 @@ code {
     color: gray;
     float: right;
 }
+
+.cur_page {
+    color: #333;
+}

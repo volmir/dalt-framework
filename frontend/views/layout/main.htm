@@ -16,14 +16,10 @@ use framework\core\Auth;
 
         <link rel="shortcut icon" href="/favicon.ico">
 
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<?php $this->app->assets->outputCss(); ?>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
+<?php $this->app->assets->outputJs(); ?>       
 
-        <script src="/js/scripts.js"></script>    
-
-        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
 
@@ -80,7 +76,6 @@ use framework\core\Auth;
                         <p class="text-muted text-right">
                             <small>
                                 Generated for <?php echo $this->app->benchmark->elapsedTime('begin', 'end'); ?> sec. 
-                                Memory usage: <?php echo $this->app->benchmark->memoryUsage(); ?>
                             </small>
                         </p>
                     </div>                    

@@ -1,6 +1,6 @@
 <?php
 
-use framework\core\DB;
+use framework\adapter\DB;
 use framework\core\Registry;
 use framework\core\Environment;
  
@@ -18,7 +18,10 @@ class DbTest extends PHPUnit_Framework_TestCase
         $config = array_merge($configFrontend, $configCommon );
         $this->config = new Registry($config);
         
-        define('DB', $this->config->db[Environment::get()]);
+        define('DB_HOST', $this->config->db[Environment::get()]['host']);    
+        define('DB_DBNAME', $this->config->db[Environment::get()]['dbname']);    
+        define('DB_USERNAME', $this->config->db[Environment::get()]['username']);    
+        define('DB_PASSWORD', $this->config->db[Environment::get()]['password']);        
     }      
 
     public function testIsRightObject() 

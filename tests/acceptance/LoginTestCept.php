@@ -4,9 +4,13 @@ $I->amOnPage('/');
 $I->click('#login');
 $I->submitForm('#loginForm', [
     'login' => 'admin', 
-    'password' => '111'
+    'password' => '123'
 ]);
 $I->see('Mainpage');
+
+
+$I->amOnPage('/');
+$I->click('#logout');
 
 
 $I->amOnPage('/');
