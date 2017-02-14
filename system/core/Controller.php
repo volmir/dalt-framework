@@ -14,7 +14,7 @@ abstract class Controller
      * 
      * @var Application 
      */
-    public $app;
+    public $application;
     /**
      *
      * @var View 
@@ -28,12 +28,12 @@ abstract class Controller
 
     /**
      * 
-     * @param Application $app
+     * @param Application $application
      * @return $this
      */
-    public function setApplication(Application $app)
+    public function setApplication(Application $application)
     {
-        $this->app = $app;
+        $this->application = $application;
         $this->view = new View($this);
 
         return $this;
@@ -46,30 +46,30 @@ abstract class Controller
      */
     public function __get($name) 
     {
-        if (isset($this->app->$name)) {
-            return $this->app->$name;
-        }
+        if (property_exists($this->application, $name)) {
+            return $this->application->$name;
+        }        
     }
 
     public function run()
     {
-        $action = $this->app->router->getActionName();
+        $action = $this->router->getActionName();
         try {
             if (method_exists($this, $action)) {
                 ob_start();
-                call_user_func_array(array($this, $action), $this->app->router->getActionParams());
+                call_user_func_array(array($this, $action), $this->router->getActionParams());
                 $output = ob_get_contents();
                 ob_end_clean();
                 
-                $this->app->response->setContent($output);
+                $this->response->setContent($output);
             } else {
                 throw new CoreException('Action "' . $action . '" not exists: ' . Request::getInstance()->server["REQUEST_URI"]);                
             }
         } catch (CoreException $e) {
             $e->logError();
-            $this->app->response->setHeader("HTTP/1.1 404 Not Found");
-            $this->app->router->error404();
-            $this->app->execute();
+            $this->response->setHeader("HTTP/1.1 404 Not Found");
+            $this->router->error404();
+            $this->application->execute();
             exit();
         }       
     }    

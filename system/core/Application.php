@@ -26,7 +26,7 @@ class Application
      *
      * @var Asset 
      */
-    public $asset;    
+    public $assets;    
     /**
      *
      * @var Registry 
@@ -36,7 +36,12 @@ class Application
      *
      * @var Response 
      */
-    public $response;   
+    public $response;  
+    /**
+     *
+     * @var Request 
+     */
+    public $request;     
     /**
      *
      * @var Router 
@@ -53,7 +58,8 @@ class Application
         $this->environment = Environment::get();
         $this->config = new Registry($config);
         $this->response = new Response();
-        $this->assets = new Asset($this->config->assets);        
+        $this->request = Request::getInstance();
+        $this->assets = new Asset($this->config->assets); 
         $this->setDbParams();  
         $this->router = new Router($this->config->routes);
         $this->execute();

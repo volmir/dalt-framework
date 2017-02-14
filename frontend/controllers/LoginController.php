@@ -21,9 +21,8 @@ class LoginController extends Controller
             'title' => 'Login',
         ]);        
         
-        $request = Request::getInstance()->request;
-        if (isset($request['login']) && isset($request['password'])) {
-            if (Auth::auth($request['login'], $request['password'])) {
+        if (isset($this->request->post['login']) && isset($this->request->post['password'])) {
+            if (Auth::auth($this->request->post['login'], $this->request->post['password'])) {
                 Response::redirect('/');
             } else {
                 $this->authStatus = 'error';
@@ -38,4 +37,5 @@ class LoginController extends Controller
         Auth::logout();
         Response::redirect('/');
     }    
+
 }

@@ -14,9 +14,9 @@ class ViewTest extends PHPUnit_Framework_TestCase
         $this->config = new Registry($config);     
 
         $stdClass = new stdClass();
-        $stdClass->app = new stdClass();
-        $stdClass->app->config = new stdClass();
-        $stdClass->app->config->basePath = $this->config->basePath;
+        $stdClass->application = new stdClass();
+        $stdClass->application->config = new stdClass();
+        $stdClass->application->config->basePath = $this->config->basePath;
  
         $this->view = new View($stdClass);
     }     

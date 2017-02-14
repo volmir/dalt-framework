@@ -6,6 +6,7 @@ use framework\core\Controller;
 use framework\core\Auth;
 use framework\core\Response;
 use framework\core\Request;
+use common\models\User;
 
 class LoginController extends Controller 
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
         
         $request = Request::getInstance()->request;
         if (isset($request['login']) && isset($request['password'])) {
-            if (Auth::auth($request['login'], $request['password'])) {
+            if (Auth::auth($request['login'], $request['password'], User::TYPE_ADMIN)) {
                 Response::redirect('/');
             } else {
                 $this->authStatus = 'error';

@@ -26,6 +26,20 @@ class DB
         return call_user_func_array(array(self::instance(), $method), $args);
     }
     
+    public static function parceSql($sql, $params) 
+    {
+        $keys = [];
+        foreach ($params as $key => $value) {
+            if (is_string($key)) {
+                $keys[] = '/:' . $key . '/';
+            } else {
+                $keys[] = '/[?]/';
+            }
+        }
+        $query = preg_replace($keys, $params, $sql, 1, $count);
+        return $query;
+    }
+
     private function __construct() 
     {
 

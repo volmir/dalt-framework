@@ -24,9 +24,9 @@ class Auth {
      * @param string $passwors
      * @return boolean
      */
-    public static function auth($login, $password) {
+    public static function auth($login, $password, $type = 1) {
         $user = new User();        
-        if ($user->check($login, $password)) {
+        if ($user->check($login, $password, $type)) {
             $_SESSION["login"] = $login;
             return true;
         } else {

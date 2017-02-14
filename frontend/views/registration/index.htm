@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>Registration</h1>
+        </div>
+    </div>
+
+    <?php if (isset($this->request->get['status']) && $this->request->get['status'] == 'success') { ?>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×</button>
+               <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    You have successfully registered at site</p>
+            </div>
+        </div>
+    <?php } else { ?>
+
+
+
+    <div class="col-md-6 col-md-offset-3">
+
+        <form data-toggle="validator" role="form" method="post">
+            <input type="hidden" name="submit" value="">
+            <div class="form-group">
+                <label for="inputName" class="control-label">Login</label>
+                <input type="text" name="login" class="form-control" id="inputName" placeholder="Enter login" required>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="control-label">Password</label>
+                <div class="form-inline row">
+                    <div class="form-group col-sm-6">
+                        <input type="password" name="password" data-toggle="validator" data-minlength="6" class="form-control" id="inputPassword" placeholder="123456" required>
+                        <span class="help-block">A minimum of 6 values</span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Error! Passwords do not match!" placeholder="Retype password" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="inputEmail" class="control-label">E-mail</label>
+                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email" data-error="You have not entered correctly Your E-mail" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="inputFirstname" class="control-label">Firstname</label>
+                <input type="text" name="firstname" class="form-control" id="inputFirstname" placeholder="Enter firstname" data-error="Enter your firstname" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="inputLastname" class="control-label">Lastname</label>
+                <input type="text" name="lastname" class="form-control" id="inputLastname" placeholder="Enter lastname" data-error="Enter your lastname" required>
+                <div class="help-block with-errors"></div>
+            </div>            
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="terms" data-error="Before rearrange data" required>
+                        Prove you are a human
+                    </label>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Submit</button>
+            </div>
+        </form>
+
+    </div>
+
+    <?php } ?>
+
+</div>
