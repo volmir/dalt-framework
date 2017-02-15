@@ -36,10 +36,16 @@ class View
     public function __construct($controller) 
     {        
         $this->controller = $controller;
-        $controllerPath = explode('\\', get_class($controller));
-        $controllerName = strtolower(str_replace('Controller', '', array_pop($controllerPath)));
-        $this->path = $this->config->basePath . '/views/' . $controllerName . '/'; 
     }
+    
+    /**
+     * 
+     * @param string $path
+     */
+    public function setPath($path = '') 
+    {        
+        $this->path = $path; 
+    }    
     
     /**
      * 
@@ -51,7 +57,7 @@ class View
         if (property_exists($this->controller, $name)) {
             return $this->controller->$name;
         }  
-        if (property_exists($this->controller->application, $name)) {
+        if (isset($this->controller->application) && property_exists($this->controller->application, $name)) {
             return $this->application->$name;
         }         
         return null;
@@ -60,7 +66,7 @@ class View
     /**
      * Set variables
      *
-     * @param array $name
+     * @param array $values
      */
     public function set(array $values) 
     {

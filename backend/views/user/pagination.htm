@@ -1,0 +1,36 @@
+<div class="row">  
+    <div class="col-xs-12 text-center">
+<ul class="pagination">
+<?php
+if (isset($this->pages['prev'])) {
+?>
+<li>
+    <a href="?page=1"><<</a>  
+</li>    
+<li>    
+    <a href="?page=<?=$this->pages['prev']?>"><</a>
+</li>
+<?php } ?>
+<?php       
+foreach ($this->pages['pages'] as $page) {
+    $activeClass = '';
+    if ($page == $this->pages['current']) {
+        $activeClass = ' class="active"';
+    }
+?>
+<li <?=$activeClass?>><a href="?page=<?=$page?>"><?=$page?></a>
+</li>
+<?php } ?>  
+<?php
+if (isset($this->pages['next'])){
+?>
+<li>
+    <a href="?page=<?=$this->pages['next']?>">></a> 
+</li>    
+<li>    
+    <a href="?page=<?=$this->pages['last']?>">>></a>
+</li>            
+<?php } ?>
+</ul>
+</div>    
+</div>    

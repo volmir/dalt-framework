@@ -60,7 +60,7 @@ class Application
         $this->response = new Response();
         $this->request = Request::getInstance();
         $this->assets = new Asset($this->config->assets); 
-        $this->setDbParams();  
+        $this->setParams();  
         $this->router = new Router($this->config->routes);
         $this->execute();
     }
@@ -69,9 +69,9 @@ class Application
     {
         $controllerName = $this->router->getControllerName();     
         try {
-            $controller_class = '\\' . $this->config->name . '\controllers\\' . $controllerName . 'Controller';
-            if (class_exists($controller_class)) {
-                $controller = new $controller_class;
+            $controllerClass = '\\' . $this->config->name . '\controllers\\' . $controllerName . 'Controller';
+            if (class_exists($controllerClass)) {
+                $controller = new $controllerClass;
                 if ($controller instanceof Controller) {
                     $controller->setApplication($this)->run();
                 }
@@ -93,8 +93,10 @@ class Application
         echo $this->response->getContent();
     }
 
-    protected function setDbParams()
+    protected function setParams()
     {
+        define('APP_NAME', $this->config->name);    
+        
         define('DB_HOST', $this->config->db[Environment::get()]['host']);    
         define('DB_DBNAME', $this->config->db[Environment::get()]['dbname']);    
         define('DB_USERNAME', $this->config->db[Environment::get()]['username']);    

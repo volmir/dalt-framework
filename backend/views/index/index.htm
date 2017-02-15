@@ -1,78 +1,96 @@
 
 
 <div class="row">
-    
+
     <div class="col-md-12">
         <div class="page-header">
             <h1>Dashboard</h1>
         </div>      
     </div>      
-    
-    
-    <div class="col-md-12">    
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+
+
+
+    <div class="panel">
+        <header class="panel-heading">
+            <h4>Full Width Table</h4>
+        </header>
+<style>    
+.progress {
+    margin-bottom: 0px;
+}    
+</style>        
+        <div class="panel-body">
+            <table class="table">
+                <tbody><tr>
+                        <th style="width: 10px">#</th>
+                        <th>Task</th>
+                        <th>Progress</th>
+                        <th style="width: 40px">Label</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>Update software</td>
+                        <td>
+                            <div class="progress xs">
+                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-red">55%</span></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Clean database</td>
+                        <td>
+                            <div class="progress xs">
+                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-yellow">70%</span></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>Cron job running</td>
+                        <td>
+                            <div class="progress xs progress-striped active">
+                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-light-blue">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>Fix and squish bugs</td>
+                        <td>
+                            <div class="progress xs progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-green">90%</span></td>
+                    </tr>
+                </tbody></table>
+        </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+
+
+
+    <div class="panel-heading">
+        <header class="panel-heading">
+            <h4>Bar &amp; Charts</h4>
+        </header>       
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="hero-bar" style="height: 230px; position: relative;"><svg height="230" version="1.1" width="440" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; left: -0.5px; top: -0.549988px;"><desc>Created with RaphaГ«l 2.1.0</desc><defs></defs><text style="text-anchor: end; font: 12px sans-serif;" x="48.5" y="191" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal"><tspan dy="4">0</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M61,191H415" stroke-width="0.5"></path><text style="text-anchor: end; font: 12px sans-serif;" x="48.5" y="149.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal"><tspan dy="4">500</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M61,149.5H415" stroke-width="0.5"></path><text style="text-anchor: end; font: 12px sans-serif;" x="48.5" y="108" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal"><tspan dy="4">1,000</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M61,108H415" stroke-width="0.5"></path><text style="text-anchor: end; font: 12px sans-serif;" x="48.5" y="66.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal"><tspan dy="4">1,500</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M61,66.5H415" stroke-width="0.5"></path><text style="text-anchor: end; font: 12px sans-serif;" x="48.5" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal"><tspan dy="4">2,000</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M61,25H415" stroke-width="0.5"></path><text style="text-anchor: middle; font: 12px sans-serif;" x="385.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">5</tspan></text><text style="text-anchor: middle; font: 12px sans-serif;" x="326.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">4S</tspan></text><text style="text-anchor: middle; font: 12px sans-serif;" x="267.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">4</tspan></text><text style="text-anchor: middle; font: 12px sans-serif;" x="208.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">3GS</tspan></text><text style="text-anchor: middle; font: 12px sans-serif;" x="149.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">3G</tspan></text><text style="text-anchor: middle; font: 12px sans-serif;" x="90.5" y="203.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">1</tspan></text><rect x="68.375" y="179.712" width="44.25" height="11.288000000000011" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect><rect x="127.375" y="104.929" width="44.25" height="86.071" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect><rect x="186.375" y="168.175" width="44.25" height="22.82499999999999" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect><rect x="245.375" y="159.46" width="44.25" height="31.539999999999992" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect><rect x="304.375" y="136.635" width="44.25" height="54.36500000000001" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect><rect x="363.375" y="60.607" width="44.25" height="130.393" r="0" rx="0" ry="0" fill="#3d88ba" stroke="#000" style="" stroke-width="0"></rect></svg><div class="morris-hover morris-default-style" style="left: 171px; top: 86px; display: none;"><div class="morris-hover-row-label">3GS</div><div class="morris-hover-point" style="color: #3d88ba">
+                            Sells:
+                            275
+                        </div></div></div>
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-badge"><i class="fa fa-check"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Nullam scelerisque feugiat tortor, non pellentesque.</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Consectetur ipsum dolor sit amet, adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li class="timeline-inverted">
-                        <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Pellentesque rhoncus dolor eget posuere molestie</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div class="col-md-6">
+                <div id="hero-donut" style="height: 230px;"><svg height="230" version="1.1" width="205" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; left: -0.25px; top: -0.549988px;"><desc>Created with RaphaГ«l 2.1.0</desc><defs></defs><path style="opacity: 0;" fill="none" stroke="#30a1ec" d="M102.5,176.66666666666666A61.666666666666664,61.666666666666664,0,0,0,164.16666647647116,115.0048432886693" stroke-width="2" opacity="0"></path><path style="" fill="#30a1ec" stroke="#ffffff" d="M102.5,179.66666666666666A64.66666666666666,64.66666666666666,0,0,0,167.16666646721842,115.00507890811808L189.999999730128,115.00687223392266A87.5,87.5,0,0,1,102.5,202.5Z" stroke-width="3"></path><path style="opacity: 1;" fill="none" stroke="#76bdee" d="M164.16666647647116,115.0048432886693A61.666666666666664,61.666666666666664,0,0,0,54.44019307660182,76.36021821666864" stroke-width="2" opacity="1"></path><path style="" fill="#76bdee" stroke="#ffffff" d="M167.16666646721842,115.00507890811808A64.66666666666666,64.66666666666666,0,0,0,52.10214841546354,74.48044504883092L30.410289614902723,57.04032732500296A92.5,92.5,0,0,1,194.99999971470675,115.00726493300395Z" stroke-width="3"></path><path style="opacity: 0;" fill="none" stroke="#c4dafe" d="M54.44019307660182,76.36021821666864A61.666666666666664,61.666666666666664,0,0,0,63.856443727438204,163.0567720138081" stroke-width="2" opacity="0"></path><path style="" fill="#c4dafe" stroke="#ffffff" d="M52.10214841546354,74.48044504883092A64.66666666666666,64.66666666666666,0,0,0,61.97648693580007,165.39466903069604L47.66792691055421,183.18866299256553A87.5,87.5,0,0,1,34.30703071679987,60.173282604732535Z" stroke-width="3"></path><path style="opacity: 0;" fill="none" stroke="#30a1ec" d="M63.856443727438204,163.0567720138081A61.666666666666664,61.666666666666664,0,0,0,102.48062684562149,176.66666362353868" stroke-width="2" opacity="0"></path><path style="" fill="#30a1ec" stroke="#ffffff" d="M61.97648693580007,165.39466903069604A64.66666666666666,64.66666666666666,0,0,0,102.47968436784092,179.6666634754946L102.4725110647332,202.4999956820481A87.5,87.5,0,0,1,47.66792691055421,183.18866299256553Z" stroke-width="3"></path><text style="text-anchor: middle; font: 800 15px &quot;Arial&quot;;" x="102.5" y="105" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" font-size="15px" font-weight="800" transform="matrix(1.7344,0,0,1.7344,-75.2734,-83.3516)" stroke-width="0.5765765765765766"><tspan dy="5.5">Referrals</tspan></text><text style="text-anchor: middle; font: 14px &quot;Arial&quot;;" x="102.5" y="125" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" font-size="14px" transform="matrix(1.2847,0,0,1.2847,-29.184,-33.3125)" stroke-width="0.7783783783783784"><tspan dy="5">40%</tspan></text></svg></div>
             </div>
-            <!-- /.panel-body -->
         </div>
     </div>
-  
-    
+
+
 </div>

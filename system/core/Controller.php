@@ -33,9 +33,13 @@ abstract class Controller
      */
     public function setApplication(Application $application)
     {
-        $this->application = $application;
+        $this->application = $application;  
+        
+        $controllerPath = explode('\\', get_called_class());
+        $controllerName = strtolower(str_replace('Controller', '', array_pop($controllerPath)));
         $this->view = new View($this);
-
+        $this->view->setPath($this->config->basePath . '/views/' . $controllerName . '/');        
+       
         return $this;
     }    
     

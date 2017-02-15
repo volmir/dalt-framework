@@ -65,4 +65,20 @@ class User extends Model
         $stmt = $dbh->prepare($sql);
         return $stmt->execute($params);
     }
+    
+    /**
+     * 
+     * @param int $typeId
+     * @return string
+     */
+    public function getType($typeId) 
+    {
+        $type = '';
+        if ($typeId == self::TYPE_USER) {
+            $type = 'User';
+        } elseif ($typeId == self::TYPE_ADMIN) {
+            $type = 'Admin';
+        }        
+        return $type;
+    }
 }

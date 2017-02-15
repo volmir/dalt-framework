@@ -32,12 +32,6 @@ use framework\core\Auth;
                         <li><a href="/about">About</a></li>
                         <li><a href="/contact" id="contact">Contact</a></li>  
                         <?php if (Auth::isAuth()) { ?>
-                        <li class="restricted-area"><button type="button" class="btn btn-default btn-sm">
-                                <a href="<?php echo $this->config->backendUrl; ?>/"><span class="glyphicon glyphicon-edit"></span> Admin zone</a>
-                            </button>
-                        </li>   
-                        <?php } ?>
-                        <?php if (Auth::isAuth()) { ?>
                         <li class="restricted-area">
                             <button type="button" class="btn btn-default btn-sm">
                                 <a href="/login/logout/" id="logout"><span class="glyphicon glyphicon-log-in"></span> 

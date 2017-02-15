@@ -13,18 +13,29 @@
           <th>Email</th>
           <th>Name</th>
           <th>Registration</th>
+          <th>Type</th>
         </tr>
       </thead>
       <tbody>
+<?php
+if (is_array($this->users)) {
+    foreach ($this->users as $user) {
+?>          
         <tr>
-          <td>1</td>
-          <td>asdkask</td>
-          <td>asdfas@adsas.com</td>
-          <td>Otto Mark</td>
-          <td>2003-09-12</td>
+          <td><?php echo $user->user_id; ?></td>
+          <td><?php echo $user->login; ?></td>
+          <td><?php echo $user->email; ?></td>
+          <td><?php echo $user->firstname . ' ' . $user->lastname; ?></td>
+          <td><?php echo $user->registration_date; ?></td>
+          <td><?php echo $this->user->getType($user->type); ?></td>
         </tr>
+    <?php } ?>        
+<?php } ?>        
       </tbody>
-    </table>      
-    
+    </table>    
     </div>
 </div>
+
+<?php
+include 'pagination.htm';
+?> 

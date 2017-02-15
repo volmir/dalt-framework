@@ -3,8 +3,8 @@ $I = new AcceptanceTester($scenario);
 $I->amOnPage('/');
 $I->click('#login');
 $I->submitForm('#loginForm', [
-    'login' => 'admin', 
-    'password' => '123'
+    'login' => 'user', 
+    'password' => '111111'
 ]);
 $I->see('Mainpage');
 
