@@ -14,8 +14,9 @@ $ composer install
 
 Путь к папке DocumentRoot (для настройки виртуальных хостов):
 
- - для фронтеэнда: ./frontend/public
- - для бекэнда: ./backend/public
+>для фронтеэнда: ./frontend/public
+
+>для бекэнда: ./backend/public
 
 Пример настройки виртуального хоста (Apache):
 
