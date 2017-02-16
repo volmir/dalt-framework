@@ -52,7 +52,7 @@ $ composer install
 
 
 
-### Требования по технологиям
+### Используемые технологии:
 
  - Веб-сервер
  - PHP 5.5.* или PHP 7.*
@@ -61,3 +61,4 @@ $ composer install
  - Codeception
  - PhpUnit
  - Twitter Bootstrap 3.3.6
+ - PSR
