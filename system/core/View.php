@@ -11,7 +11,7 @@ class View
      * 
      * @var string
      */
-    protected $layoutTemplate = '../layout/main';
+    protected $templateLayout = '../layout/main';
     /**
      *
      * @var string
@@ -19,9 +19,9 @@ class View
     protected $templateExtention = '.htm';    
     /**
      * 
-     * @var Controller
+     * @var mixed
      */
-    private $controller;    
+    private $object;    
     /**
      *
      * @var string
@@ -33,9 +33,9 @@ class View
      */
     public $vars = [];    
 
-    public function __construct($controller) 
+    public function __construct($object = null) 
     {        
-        $this->controller = $controller;
+        $this->object = $object;
     }
     
     /**
@@ -45,6 +45,15 @@ class View
     public function setPath($path = '') 
     {        
         $this->path = $path; 
+    } 
+    
+    /**
+     * 
+     * @param string $templateLayout
+     */
+    public function setLayout($templateLayout = '') 
+    {        
+        $this->templateLayout = $templateLayout; 
     }    
     
     /**
@@ -54,14 +63,21 @@ class View
      */
     public function __get($name)
     {
-        if (property_exists($this->controller, $name)) {
-            return $this->controller->$name;
+        if (property_exists($this->object, $name)) {
+            return $this->object->$name;
         }  
-        if (isset($this->controller->application) && property_exists($this->controller->application, $name)) {
-            return $this->application->$name;
+        if (isset($this->object->application) && property_exists($this->object->application, $name)) {
+            return $this->object->application->$name;
         }         
         return null;
-    }    
+    }   
+    
+    public function __call($method, $params) 
+    {
+        if (method_exists($this->object, $method)) {
+            return call_user_func_array([$this->object, $method], $params);
+        } 
+    }     
 
     /**
      * Set variables
@@ -132,7 +148,7 @@ class View
         $this->set([
             'content' => $this->parse($template)
         ]);
-        echo $this->parse($this->layoutTemplate);
+        echo $this->parse($this->templateLayout);
     }
     
     /**
@@ -140,7 +156,7 @@ class View
      *
      * @param filename $template
      */
-    public function render_partial($template) 
+    public function renderPartial($template) 
     {
         echo $this->parse($template);
     }    

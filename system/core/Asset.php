@@ -74,4 +74,14 @@ class Asset
         }
     }     
     
+    public function clearCss()
+    {
+        $this->css = [];
+    }
+    
+    public function clearJs()
+    {
+        $this->js = [];
+    }
+    
 }

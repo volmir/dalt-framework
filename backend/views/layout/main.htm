@@ -26,8 +26,17 @@ use framework\core\Auth;
         <!-- Navbar -->
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
-
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button> 
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tasks"></span> <?php echo $this->config->siteName; ?></a>
+                </div>                
                 <div class="header">
+                    <div class="navbar-collapse collapse">
                     <ul class="nav nav-pills pull-right restricted-area">
                         <li><a href="/user" class="items">Users</a></li>
                         <?php if (Auth::isAuth()) { ?>
@@ -46,8 +55,6 @@ use framework\core\Auth;
                         </li>
                         <?php } ?>
                     </ul>
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tasks"></span> <?php echo $this->config->siteName; ?></a>
                     </div>
                 </div>          
 

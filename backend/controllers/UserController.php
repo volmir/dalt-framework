@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
-use framework\core\Controller;
+use backend\system\BackendController;
 use framework\adapter\DB;
 use common\models\User;
 use framework\libraries\Pagination;
 
-class UserController extends Controller 
+class UserController extends BackendController 
 {
     
     /**
@@ -20,6 +20,11 @@ class UserController extends Controller
      * @var User 
      */
     public $user;
+    
+    public function __construct() 
+    {
+        parent::__construct();
+    }       
 
     public function indexAction() 
     {

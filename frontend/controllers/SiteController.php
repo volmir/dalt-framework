@@ -21,7 +21,7 @@ class SiteController extends Controller
             'request_scheme' => $this->request->server['REQUEST_SCHEME'],
             'server_name' => $this->request->server['SERVER_NAME'],
         ]);
-        $this->view->render_partial('robots.txt');
+        $this->view->renderPartial('robots.txt');
     }   
     
     public function sitemapAction() 
@@ -31,7 +31,7 @@ class SiteController extends Controller
             'server_name' => $this->request->server['SERVER_NAME'],
             'date' => date('Y-m-d'),
         ]);
-        $this->view->render_partial('sitemap.xml');
+        $this->view->renderPartial('sitemap.xml');
     }      
     
 }

@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function indexAction() 
     {   
         $this->view->set([
-            'title' => 'Login',
+            'title' => 'Sign in',
         ]);        
         
         $request = Request::getInstance()->request;
@@ -30,13 +30,17 @@ class LoginController extends Controller
                 $this->authStatus = 'error';
             }            
         }
-                
+             
+        $this->assets->clearCss();     
+        $this->assets->addCss('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');     
+        $this->assets->addCss('/css/signin.css');     
+        $this->view->setLayout('../layout/signin');
         $this->view->render('index');
     }   
     
     public function logoutAction() 
     {
         Auth::logout();
-        Response::redirect('/');
+        Response::redirect('/login/');
     }    
 }

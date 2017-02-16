@@ -2,24 +2,24 @@
 
 namespace backend\controllers;
 
-use framework\core\Controller;
+use backend\system\BackendController;
 use framework\core\Auth;
-use framework\core\Response;
 
-class IndexController extends Controller 
+class IndexController extends BackendController 
 {
-
+    
+    public function __construct() 
+    {
+        parent::__construct();
+    }
+    
     public function indexAction() 
     {
         $this->view->set([
-            'title' => 'Backend index page',
+            'title' => 'Backend dashboard',
         ]); 
         
-        if (!Auth::isAuth()) { 
-            $this->view->render('../login/index');
-        } else {
-            $this->view->render('index');
-        }
+        $this->view->render('index');
     }
     
 }

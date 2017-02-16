@@ -10,7 +10,7 @@ class Widget
      */
     public $view;
 
-    public function init($config = [])
+    protected function configure($config = [])
     {
         $this->view = new View($this);
         $path = __DIR__ . '/../../' . APP_NAME . '/views/widgets/';
@@ -24,8 +24,8 @@ class Widget
     }     
 
     /**
-     * Executes the widget.
-     * @return string the result of widget execution to be outputted.
+     * Executes the widget
+     * @return string the result of widget execution to be outputted
      */
     public function run()
     {
@@ -33,10 +33,10 @@ class Widget
     }    
     
     /**
-     * Creates a widget instance and runs it.
-     * The widget rendering result is returned by this method.
+     * Creates a widget instance and runs it
+     * The widget rendering result is returned by this method
      * @param array $config name-value pairs that will be used to initialize the object properties
-     * @return string the rendering result of the widget.
+     * @return string the rendering result of the widget
      * @throws \Exception
      */
     public static function widget($config = [])
@@ -47,7 +47,7 @@ class Widget
             $widgetClass = get_called_class();
             if (class_exists($widgetClass)) {
                 $widget = new $widgetClass;                
-                $widget->init($config);
+                $widget->configure($config);
                 $out = $widget->run();
             }            
         } catch (\Exception $e) {
@@ -67,6 +67,6 @@ class Widget
     public function render($template, $vars = []) 
     {
         $this->view->set($vars);
-        $this->view->render_partial($template);
+        $this->view->renderPartial($template);
     } 
 }

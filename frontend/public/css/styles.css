@@ -62,3 +62,7 @@ code {
 .cur_page {
     color: #333;
 }
+
+div.navbar-collapse.collapse {
+    padding-right: 0px;
+}
