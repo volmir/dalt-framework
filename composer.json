@@ -1,7 +1,7 @@
 {
-    "name": "volmir/simple-framework",
-    "description": "Simple PHP Framework",
-    "homepage": "https://github.com/volmir/simple-framework",   
+    "name": "volmir/dalt-framework",
+    "description": "Dalt Framework",
+    "homepage": "https://github.com/volmir/dalt-framework",   
     "require": {
         "psr/log": "~1.0"
     },
