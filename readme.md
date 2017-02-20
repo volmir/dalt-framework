@@ -41,7 +41,7 @@ upstream phpfcgi {
 }
 
 server {
-    listen 8080;
+    listen 80;
     root /var/www/dalt-framework/frontend/public;
     index index.php;
     server_name dalt-framework.local;
