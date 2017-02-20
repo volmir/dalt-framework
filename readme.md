@@ -33,6 +33,39 @@ $ composer install
 </VirtualHost>
 ```
 
+Пример настройки виртуального хоста (Nginx):
+
+```nginx
+upstream phpfcgi {
+    server unix:/var/run/php/php7.0-fpm.sock;
+}
+
+server {
+    listen 8080;
+    root /var/www/dalt-framework/frontend/public;
+    index index.php;
+    server_name dalt-framework.local;
+
+    rewrite ^/index\.php/?(.*)$ /$1 permanent;
+
+    location / {
+        index index.php;
+        try_files $uri @rewriteap;
+    }
+
+    location @rewriteap {
+        rewrite  ^(.*)$ /index.php/$1 last;
+    }
+
+    location ~ ^/(index)\.php(/|$) {
+        fastcgi_pass phpfcgi;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+```
+
 Доступы к БД сохранены в файле **./common/config/main.php**
 
 Дамп базы данных находится в файле **./tests/_data/dump.sql**
