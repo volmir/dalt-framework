@@ -8,7 +8,7 @@ Dalt Framework - это простой, современный MVC PHP-фрей�
 
 ```sh
 $ cd /path/to/htdocs
-$ git clone https://github.com/volmir/dalt-framework.git .
+$ git clone https://github.com/volmir/dalt-framework.git
 $ composer install
 ```
 
