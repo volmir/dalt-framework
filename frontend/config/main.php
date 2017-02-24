@@ -2,8 +2,8 @@
 
 return [
     'name' => 'frontend',    
-    'siteName' => 'Simple Framework',
-    'version' => 0.9,
+    'siteName' => 'Dalt Framework',
+    'version' => '1.0.0',
     'basePath' => dirname(__DIR__),
     'backendUrl' => 'http://backend.work.local',
     'routes' => [
