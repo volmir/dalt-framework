@@ -26,7 +26,7 @@ class EventManager
      * @param string $eventName
      * @param array $data
      */
-    public function init($eventName, $data = []) 
+    public function trigger($eventName, $data = []) 
     {
         if (!empty($this->listeners[$eventName])) {
             foreach ($this->listeners[$eventName] as $listener) {
