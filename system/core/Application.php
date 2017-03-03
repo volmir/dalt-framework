@@ -7,6 +7,7 @@ use framework\core\Registry;
 use framework\core\Router;
 use framework\core\Request;
 use framework\core\Environment;
+use framework\core\DI;
 use framework\core\Controller;
 use framework\exception\CoreException;
 
@@ -17,6 +18,11 @@ class Application
      * @var Benchmark 
      */
     public $benchmark;
+    /**
+     *
+     * @var DI
+     */
+    public $di;    
     /**
      *
      * @var string
@@ -54,9 +60,10 @@ class Application
      */
     public function run($config = []) 
     {           
-        $this->benchmark = new Benchmark();  
+        $this->benchmark = new Benchmark(); 
         $this->environment = Environment::get();
         $this->config = new Registry($config);
+        $this->di = new DI();  
         $this->response = new Response();
         $this->request = Request::getInstance();
         $this->assets = new Asset($this->config->assets); 
@@ -95,11 +102,11 @@ class Application
 
     protected function setParams()
     {
-        define('APP_NAME', $this->config->name);    
+        define('APP_NAME', $this->config->name);   
         
-        define('DB_HOST', $this->config->db[Environment::get()]['host']);    
-        define('DB_DBNAME', $this->config->db[Environment::get()]['dbname']);    
-        define('DB_USERNAME', $this->config->db[Environment::get()]['username']);    
-        define('DB_PASSWORD', $this->config->db[Environment::get()]['password']);          
+        define('DB_HOST', $this->config->db[$this->environment]['host']);    
+        define('DB_DBNAME', $this->config->db[$this->environment]['dbname']);    
+        define('DB_USERNAME', $this->config->db[$this->environment]['username']);    
+        define('DB_PASSWORD', $this->config->db[$this->environment]['password']);          
     }
 }
