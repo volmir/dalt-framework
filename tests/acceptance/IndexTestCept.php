@@ -1,6 +1,6 @@
 <?php 
 $I = new AcceptanceTester($scenario);
 $I->amOnPage('/');
-$I->see('Simple Framework');
+$I->see('Dalt Framework');
 $I->seeResponseCodeIs(200);
 

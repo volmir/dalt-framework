@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use backend\system\BackendController;
-use framework\adapter\DB;
+use framework\adapter\Eloquent;
 use common\models\User;
 use framework\libraries\Pagination;
 
@@ -12,14 +12,9 @@ class UserController extends BackendController
     
     /**
      *
-     * @var array
+     * @var User
      */
     public $users;
-    /**
-     *
-     * @var User 
-     */
-    public $user;
     
     public function __construct() 
     {
@@ -31,14 +26,8 @@ class UserController extends BackendController
         $this->view->set([
             'title' => 'Users',
         ]);  
-        
-        $this->user = new User();
-        
-        $dbh = DB::getInstance();
-        $sql = "SELECT * FROM users ORDER BY login ASC";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute();
-        $this->users = $stmt->fetchAll(); 
+
+        $this->users = User::orderBy('login', 'ASC')->get();
         
         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;        
         $pagination = new Pagination();

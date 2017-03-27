@@ -2,10 +2,11 @@
 
 namespace common\models;
 
-use framework\core\Model;
-use framework\adapter\DB;
+use common\models\UserInterface;
+use framework\adapter\Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Model implements UserInterface
 {
     
     const TYPE_USER = 1;
@@ -13,35 +14,49 @@ class User extends Model
     
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
-
+    
     /**
+     *
+     * @var string
+     */
+    protected $table = 'users';
+    /**
+     *
+     * @var string 
+     */
+    protected $primaryKey = 'user_id';
+    /**
+     *
+     * @var array
+     */
+    protected $guarded = ['user_id'];
+    /**
+     *
+     * @var boolean
+     */
+    public $timestamps = false;    
+
+    public function __construct() 
+    {
+        Eloquent::getInstance();
+    }
+
+        /**
      *
      * @param string $login
      * @param string $password
+     * @param string $type
      * @return boolean
      */
     public function check($login, $password, $type = self::TYPE_USER)
     {
-        $dbh = DB::getInstance();
-        $sql = "
-            SELECT user_id 
-            FROM users 
-            WHERE 
-                login = :login
-                AND password = md5(:password)
-                AND status = :status
-                AND type = :type
-            ";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute([
-            'login' => $login,
-            'password' => $password,
-            'status' => self::STATUS_ACTIVE,
-            'type' => $type,
-        ]);
-        $user_id = $stmt->fetchColumn();
-
-        if (isset($user_id) && $user_id > 0) {
+        $user = User::where('login', $login)
+                ->where('password', md5($password))
+                ->where('status', self::STATUS_ACTIVE)
+                ->where('type', $type)
+                ->first();
+        
+        if (isset($user) && $user instanceof User) {
             return true;
         } else {
             return false;
@@ -55,30 +70,48 @@ class User extends Model
      */
     public function add($params)
     {
-        $dbh = DB::getInstance();
-        $sql = "
-            INSERT INTO `users`
-                (`login`, `password`, `email`, `firstname`, `lastname`, `registration_date`)
-            VALUES
-                (:login, md5(:password), :email, :firstname, :lastname, NOW())
-        ";
-        $stmt = $dbh->prepare($sql);
-        return $stmt->execute($params);
+        $user = new User();        
+        $user->login = $params['login'];
+        $user->password = md5($params['password']);
+        $user->email = $params['email'];
+        $user->firstname = $params['firstname'];
+        $user->lastname = $params['lastname'];
+        $user->registration_date = date("Y-m-d H:i:s");        
+        $user->save();
     }
     
     /**
      * 
-     * @param int $typeId
      * @return string
      */
-    public function getType($typeId) 
+    public function getType() 
     {
         $type = '';
-        if ($typeId == self::TYPE_USER) {
+        if ($this->type == self::TYPE_USER) {
             $type = 'User';
-        } elseif ($typeId == self::TYPE_ADMIN) {
+        } elseif ($this->type == self::TYPE_ADMIN) {
             $type = 'Admin';
-        }        
+        }  
+        
         return $type;
     }
+    
+    /**
+     * 
+     * @param int $id
+     * @return User
+     */
+    public static function findIdentity($id) 
+    {
+        return User::find($id);
+    }
+    
+    /**
+     * 
+     * @return int
+     */
+    public function getId() 
+    {
+        return $this->user_id;
+    }    
 }

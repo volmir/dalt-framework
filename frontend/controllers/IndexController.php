@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use framework\core\Controller;
+use framework\adapter\Eloquent;
+use common\models\Log;
 
 class IndexController extends Controller
 {

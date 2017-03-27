@@ -3,7 +3,9 @@
     "description": "Dalt Framework",
     "homepage": "https://github.com/volmir/dalt-framework",   
     "require": {
-        "psr/log": "~1.0"
+        "psr/log": "~1.0",
+        "illuminate/database": "5.2.*",
+        "doctrine/dbal": "*"
     },
     "autoload": {
         "psr-4": {

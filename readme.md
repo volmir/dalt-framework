@@ -89,7 +89,7 @@ server {
 
  - Веб-сервер
  - PHP 5.5.* или PHP 7.*
- - MySql 5.*
+ - MySql 5.5.*
  - Composer
  - Codeception
  - PhpUnit
