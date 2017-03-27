@@ -93,9 +93,7 @@ class Application
             exit();
         }        
         
-        foreach ($this->response->getHeaders() as $header) {
-            header($header);
-        }
+        $this->response->sendHeaders();
         
         echo $this->response->getContent();
     }
