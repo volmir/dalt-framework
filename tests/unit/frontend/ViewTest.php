@@ -1,8 +1,8 @@
 <?php
 
-use framework\core\View;
-use framework\core\Registry;
-use framework\exception\CoreException;
+use Dalt\Core\View;
+use Dalt\Core\Registry;
+use Dalt\Exception\CoreException;
  
 class ViewTest extends PHPUnit_Framework_TestCase
 {

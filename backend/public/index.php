@@ -14,5 +14,5 @@ $config = array_merge(
         require(__DIR__ . '/../../common/config/main.php')
         );
 
-$appication = new \framework\core\Application();
+$appication = new \Dalt\Core\Application();
 $appication->run($config);

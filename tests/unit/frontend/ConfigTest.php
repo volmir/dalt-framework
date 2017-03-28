@@ -1,6 +1,6 @@
 <?php
 
-use framework\core\Registry;
+use Dalt\Core\Registry;
  
 class ConfigTest extends PHPUnit_Framework_TestCase
 {

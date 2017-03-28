@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'backend',
+    'name' => 'Backend',
     'siteName' => 'Backend',
     'version' => '1.0.0',
     'basePath' => dirname(__DIR__),

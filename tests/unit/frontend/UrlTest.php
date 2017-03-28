@@ -1,6 +1,6 @@
 <?php
 
-use framework\core\Url;
+use Dalt\Core\Url;
  
 class UrlTest extends PHPUnit_Framework_TestCase
 {

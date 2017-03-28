@@ -1,8 +1,8 @@
 <?php
 
-use framework\adapter\DB;
-use framework\core\Registry;
-use framework\core\Environment;
+use Dalt\Adapter\DB;
+use Dalt\Core\Registry;
+use Dalt\Core\Environment;
  
 class DbTest extends PHPUnit_Framework_TestCase
 {

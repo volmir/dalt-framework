@@ -1,0 +1,33 @@
+<?php
+
+use Dalt\Core\Auth;
+
+?><!DOCTYPE html>
+<html lang="en-US">
+    <head>    
+        <meta charset="utf-8">
+        <title><?php echo(isset($title) ? $title : ''); ?></title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+        <link rel="shortcut icon" href="/favicon.ico">
+
+<?php $this->assets->outputCss(); ?>
+
+<?php $this->assets->outputJs(); ?>  
+
+    </head>
+    <body>
+
+    <div class="container">
+
+<?php echo $content; ?> 
+
+    </div>        
+
+    </body>
+</html>

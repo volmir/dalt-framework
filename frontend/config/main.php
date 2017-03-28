@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'frontend',    
+    'name' => 'Frontend',    
     'siteName' => 'Dalt Framework',
     'version' => '1.0.0',
     'basePath' => dirname(__DIR__),

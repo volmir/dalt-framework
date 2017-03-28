@@ -1,0 +1,41 @@
+<?php
+
+namespace Frontend\Controllers;
+
+use Dalt\Core\Controller;
+use Dalt\Core\Auth;
+use Dalt\Core\Response;
+use Dalt\Core\Request;
+
+class LoginController extends Controller 
+{
+    /**
+     *
+     * @var string 
+     */
+    public $authStatus = '';
+
+    public function indexAction() 
+    {   
+        $this->view->set([
+            'title' => 'Login',
+        ]);        
+        
+        if (isset($this->request->post['login']) && isset($this->request->post['password'])) {
+            if (Auth::auth($this->request->post['login'], $this->request->post['password'])) {
+                Response::redirect('/');
+            } else {
+                $this->authStatus = 'error';
+            }            
+        }
+                
+        $this->view->render('index');
+    }   
+    
+    public function logoutAction() 
+    {
+        Auth::logout();
+        Response::redirect('/');
+    }    
+
+}

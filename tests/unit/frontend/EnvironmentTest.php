@@ -1,6 +1,6 @@
 <?php
 
-use framework\core\Environment;
+use Dalt\Core\Environment;
  
 class EnvironmentTest extends PHPUnit_Framework_TestCase
 {

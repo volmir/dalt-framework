@@ -4,15 +4,14 @@
     "homepage": "https://github.com/volmir/dalt-framework",   
     "require": {
         "psr/log": "~1.0",
-        "illuminate/database": "5.2.*",
-        "doctrine/dbal": "*"
+        "illuminate/database": "5.2.*"
     },
     "autoload": {
         "psr-4": {
-            "framework\\": "system/",
-            "common\\": "common/",
-            "frontend\\": "frontend/",
-            "backend\\": "backend/"
+            "Dalt\\": "system/",
+            "Common\\": "common/",
+            "Frontend\\": "frontend/",
+            "Backend\\": "backend/"
         }
     }
 }
