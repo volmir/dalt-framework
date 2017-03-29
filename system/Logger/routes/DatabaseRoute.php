@@ -8,7 +8,7 @@ use Dalt\Core\DB;
 /**
  * Class DatabaseRouter
  *
- * CREATE TABLE `log` (
+ * CREATE TABLE `logs` (
  *   `log_id` int(11) NOT NULL AUTO_INCREMENT,
  *   `date` datetime DEFAULT NULL,
  *   `level` varchar(16) DEFAULT NULL,
@@ -16,7 +16,7 @@ use Dalt\Core\DB;
  *   `context` text,
  *   PRIMARY KEY (`log_id`)
  * ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
- * );
+ * 
  */
 class DatabaseRoute extends Route
 {

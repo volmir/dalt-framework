@@ -38,7 +38,7 @@ class Logger extends SystemLogger
         $this->routes->attach(new DatabaseRoute([
             'enabled' => false,
             'db' => DB::getInstance(),
-            'table' => 'log',
+            'table' => 'logs',
         ]));
 
         $this->routes->attach(new SyslogRoute([

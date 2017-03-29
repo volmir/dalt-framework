@@ -1,17 +1,17 @@
 <?php
 
-namespace Common\Models;
+namespace Dalt\Interfaces;
 
-interface UserInterface {
+interface IdentityInterface 
+{
     
     /**
      * Check user by login and password
      * @param string $login
      * @param string $password
-     * @param string $type
      * @return boolean
      */
-    public function check($login, $password, $type);
+    public static function check($login, $password);
     
     /**
      * Finds an identity by the given ID.

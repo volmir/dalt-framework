@@ -22,7 +22,7 @@ if ($this->users) {
     foreach ($this->users as $user) {
 ?>          
         <tr>
-          <td><?php echo $user->getId(); ?></td>
+          <td><?php echo $user->user_id; ?></td>
           <td><?php echo $user->login; ?></td>
           <td><?php echo $user->email; ?></td>
           <td><?php echo $user->firstname . ' ' . $user->lastname; ?></td>

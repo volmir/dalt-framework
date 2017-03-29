@@ -2,8 +2,6 @@
 
 namespace Dalt\Core;
 
-use Dalt\Exception\CoreException;
-
 class Config 
 {
 

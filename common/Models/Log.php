@@ -2,15 +2,15 @@
 
 namespace Common\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Dalt\Core\Model;
 
 class Log extends Model 
 {
 
-    protected $table = 'log';
+    protected $table = 'logs';
     
     protected $primaryKey = 'log_id';
     
     public $timestamps = false;
-
+    
 }

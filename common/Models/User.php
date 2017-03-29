@@ -2,11 +2,9 @@
 
 namespace Common\Models;
 
-use Common\Models\UserInterface;
-use Dalt\Adapter\Eloquent;
-use Illuminate\Database\Eloquent\Model;
+use Dalt\Core\Model;
 
-class User extends Model implements UserInterface
+class User extends Model
 {
     
     const TYPE_USER = 1;
@@ -35,32 +33,6 @@ class User extends Model implements UserInterface
      * @var boolean
      */
     public $timestamps = false;    
-
-    public function __construct() 
-    {
-        Eloquent::getInstance();
-    }
-
-        /**
-     *
-     * @param string $login
-     * @param string $password
-     * @param string $type
-     * @return boolean
-     */
-    public function check($login, $password, $type = self::TYPE_USER)
-    {
-        $user = User::where('login', $login)
-                ->where('status', self::STATUS_ACTIVE)
-                ->where('type', $type)
-                ->first();
-        
-        if (isset($user) && $user instanceof User && password_verify($password, $user->password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * 
@@ -95,23 +67,5 @@ class User extends Model implements UserInterface
         
         return $type;
     }
-    
-    /**
-     * 
-     * @param int $id
-     * @return User
-     */
-    public static function findIdentity($id) 
-    {
-        return User::find($id);
-    }
-    
-    /**
-     * 
-     * @return int
-     */
-    public function getId() 
-    {
-        return $this->user_id;
-    }    
+
 }
