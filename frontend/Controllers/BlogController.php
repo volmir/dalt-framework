@@ -2,9 +2,9 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
+use Frontend\System\FrontendController;
 
-class BlogController extends Controller 
+class BlogController extends FrontendController 
 {
 
     public function __construct() 

@@ -2,9 +2,9 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
+use Frontend\System\FrontendController;
 
-class SiteController extends Controller 
+class SiteController extends FrontendController 
 {
     
     public function error404Action() 

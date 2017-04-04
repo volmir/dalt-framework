@@ -2,13 +2,13 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
+use Frontend\System\FrontendController;
 use Dalt\Core\Auth;
 use Dalt\Core\Response;
 use Dalt\Core\Request;
 use Common\Models\User;
 
-class RegistrationController extends Controller 
+class RegistrationController extends FrontendController 
 {
     /**
      *

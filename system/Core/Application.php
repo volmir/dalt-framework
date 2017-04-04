@@ -66,7 +66,7 @@ class Application
         $this->di = new DI();  
         $this->response = new Response();
         $this->request = Request::getInstance();
-        $this->assets = new Asset($this->config->assets); 
+        $this->assets = new Asset(); 
         $this->setParams();  
         $this->router = new Router($this->config->routes);
         $this->execute();

@@ -2,12 +2,12 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
+use Frontend\System\FrontendController;
 use Dalt\Core\Auth;
 use Dalt\Core\Response;
 use Dalt\Core\Request;
 
-class LoginController extends Controller 
+class LoginController extends FrontendController 
 {
     /**
      *

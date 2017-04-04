@@ -2,11 +2,9 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
-use Dalt\Adapter\Eloquent;
-use Common\Models\Log;
+use Frontend\System\FrontendController;
 
-class IndexController extends Controller
+class IndexController extends FrontendController
 {
 
     public function indexAction() 

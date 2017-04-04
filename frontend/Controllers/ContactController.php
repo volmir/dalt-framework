@@ -2,9 +2,9 @@
 
 namespace Frontend\Controllers;
 
-use Dalt\Core\Controller;
+use Frontend\System\FrontendController;
 
-class ContactController extends Controller 
+class ContactController extends FrontendController 
 {
 
     public function indexAction() 
