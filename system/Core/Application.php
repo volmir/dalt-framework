@@ -11,18 +11,18 @@ use Dalt\Core\DI;
 use Dalt\Core\Controller;
 use Dalt\Exception\CoreException;
 
-class Application 
+class Application
 {
     /**
      *
-     * @var Benchmark 
+     * @var Benchmark
      */
     public $benchmark;
     /**
      *
      * @var DI
      */
-    public $di;    
+    public $di;
     /**
      *
      * @var string
@@ -30,51 +30,51 @@ class Application
     public $environment;
     /**
      *
-     * @var Asset 
+     * @var Asset
      */
-    public $assets;    
+    public $assets;
     /**
      *
-     * @var Registry 
+     * @var Registry
      */
     public $config;
     /**
      *
-     * @var Response 
+     * @var Response
      */
-    public $response;  
+    public $response;
     /**
      *
-     * @var Request 
+     * @var Request
      */
-    public $request;     
+    public $request;
     /**
      *
-     * @var Router 
+     * @var Router
      */
     public $router;
-    
+
     /**
-     * 
+     *
      * @param array $config
      */
-    public function run($config = []) 
-    {           
-        $this->benchmark = new Benchmark(); 
+    public function run($config = [])
+    {
+        $this->benchmark = new Benchmark();
         $this->environment = Environment::get();
         $this->config = new Registry($config);
-        $this->setDependency();  
-        $this->setParams();        
+        $this->setDependency();
+        $this->setParams();
         $this->response = new Response();
         $this->request = new Request();
-        $this->assets = new Asset(); 
+        $this->assets = new Asset();
         $this->router = new Router($this->config->routes);
         $this->execute();
     }
 
-    public function execute() 
+    public function execute()
     {
-        $controllerName = $this->router->getControllerName();     
+        $controllerName = $this->router->getControllerName();
         try {
             $controllerClass = '\\' . $this->config->name . '\Controllers\\' . $controllerName . 'Controller';
             if (class_exists($controllerClass)) {
@@ -88,26 +88,26 @@ class Application
         } catch (CoreException $e) {
             $e->logError();
             $this->response->setHeader("HTTP/1.1 404 Not Found");
-            $this->router->error404(); 
+            $this->router->error404();
             $this->execute();
             exit();
-        }        
-        
+        }
+
         $this->response->sendHeaders();
-        
+
         echo $this->response->getContent();
     }
 
     protected function setParams()
     {
-        define('APP_NAME', $this->config->name);   
-        
-        define('DB_HOST', $this->config->db[$this->environment]['host']);    
-        define('DB_DBNAME', $this->config->db[$this->environment]['dbname']);    
-        define('DB_USERNAME', $this->config->db[$this->environment]['username']);    
-        define('DB_PASSWORD', $this->config->db[$this->environment]['password']);          
+        define('APP_NAME', $this->config->name);
+
+        define('DB_HOST', $this->config->db[$this->environment]['host']);
+        define('DB_DBNAME', $this->config->db[$this->environment]['dbname']);
+        define('DB_USERNAME', $this->config->db[$this->environment]['username']);
+        define('DB_PASSWORD', $this->config->db[$this->environment]['password']);
     }
-    
+
     protected function setDependency()
     {
         $this->di = new DI();
