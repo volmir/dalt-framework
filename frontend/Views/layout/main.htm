@@ -41,19 +41,15 @@ use Dalt\Core\Auth;
                         <li><a href="/about">About</a></li>
                         <li><a href="/contact" id="contact">Contact</a></li>  
                         <?php if (Auth::isAuth()) { ?>
-                        <li class="restricted-area">
-                            <button type="button" class="btn btn-default btn-sm">
+                        <li>
                                 <a href="/login/logout/" id="logout"><span class="glyphicon glyphicon-log-in"></span> 
                                     Logout [<?php echo Auth::getUser(); ?>]
                                 </a>
-                            </button>
                         </li>
                         <?php } else { ?>
                         <li><a href="/registration" id="contact">Registration</a></li>  
-                        <li class="restricted-area">
-                            <button type="button" class="btn btn-default btn-sm">
+                        <li>
                                 <a href="/login/" id="login"><span class="glyphicon glyphicon-log-out"></span> Login</a>
-                            </button>
                         </li>
                         <?php } ?>
                     </ul>

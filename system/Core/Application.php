@@ -63,7 +63,7 @@ class Application
         $this->benchmark = new Benchmark(); 
         $this->environment = Environment::get();
         $this->config = new Registry($config);
-        $this->di = new DI();  
+        $this->setDependency();  
         $this->response = new Response();
         $this->request = Request::getInstance();
         $this->assets = new Asset(); 
@@ -107,4 +107,14 @@ class Application
         define('DB_USERNAME', $this->config->db[$this->environment]['username']);    
         define('DB_PASSWORD', $this->config->db[$this->environment]['password']);          
     }
+    
+    protected function setDependency()
+    {
+        $this->di = new DI();
+
+        $this->di->set('auth', function() {
+            return new \Dalt\Core\Auth(new \Common\Models\User());
+        });
+    }
+
 }

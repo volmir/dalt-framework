@@ -2,6 +2,8 @@
 
 namespace Dalt\Core;
 
+use Dalt\Core\View;
+
 class Widget 
 {
     /**

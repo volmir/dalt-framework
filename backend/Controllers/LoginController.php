@@ -24,7 +24,8 @@ class LoginController extends Controller
         
         $request = Request::getInstance()->request;
         if (isset($request['login']) && isset($request['password'])) {
-            if (Auth::auth($request['login'], $request['password'])) {
+            $auth = $this->di->get('auth');
+            if ($auth->auth($request['login'], $request['password'])) {
                 $user = User::where('login', $request['login'])
                     ->where('type', User::TYPE_ADMIN)
                     ->where('status', User::STATUS_ACTIVE)

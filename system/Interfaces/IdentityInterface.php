@@ -11,14 +11,14 @@ interface IdentityInterface
      * @param string $password
      * @return boolean
      */
-    public static function check($login, $password);
+    public function auth($login, $password);
     
     /**
      * Finds an identity by the given ID.
      * @param string|int $id
      * @return object
      */
-    public static function findIdentity($id);
+    public function findIdentity($id);
     
     /**
      * Returns an ID that can uniquely identify a user identity.

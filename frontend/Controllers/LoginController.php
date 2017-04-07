@@ -22,7 +22,8 @@ class LoginController extends FrontendController
         ]);        
         
         if (isset($this->request->post['login']) && isset($this->request->post['password'])) {
-            if (Auth::auth($this->request->post['login'], $this->request->post['password'])) {
+            $auth = $this->di->get('auth');
+            if ($auth->auth($this->request->post['login'], $this->request->post['password'])) {
                 Response::redirect('/');
             } else {
                 $this->authStatus = 'error';

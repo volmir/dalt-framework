@@ -2,9 +2,7 @@
 
 namespace Dalt\Core;
 
-use Dalt\Core\Request;
 use Dalt\Core\View;
-use Dalt\Core\Benchmark;
 use Dalt\Core\Application;
 use Dalt\Exception\CoreException;
 
@@ -67,7 +65,7 @@ abstract class Controller
                 
                 $this->response->setContent($output);
             } else {
-                throw new CoreException('Action "' . $action . '" not exists: ' . Request::getInstance()->server["REQUEST_URI"]);                
+                throw new CoreException('Action "' . $action . '" not exists: ' . $_SERVER["REQUEST_URI"]);                
             }
         } catch (CoreException $e) {
             $e->logError();

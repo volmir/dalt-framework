@@ -40,18 +40,14 @@ use Dalt\Core\Auth;
                     <ul class="nav nav-pills pull-right restricted-area">
                         <li><a href="/user" class="items">Users</a></li>
                         <?php if (Auth::isAuth()) { ?>
-                        <li class="restricted-area">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <a href="/login/logout/" id="logout"><span class="glyphicon glyphicon-log-in"></span> 
+                        <li>
+                                <a href="/login/logout/" class="items" id="logout"><span class="glyphicon glyphicon-log-in"></span> 
                                     Logout [<?php echo Auth::getUser(); ?>]
                                 </a>
-                            </button>
                         </li>
                         <?php } else { ?>
-                        <li class="restricted-area">
-                            <button type="button" class="btn btn-default btn-sm">
-                                <a href="/login/" id="login"><span class="glyphicon glyphicon-log-out"></span> Login</a>
-                            </button>
+                        <li>
+                                <a href="/login/"  class="items" id="login"><span class="glyphicon glyphicon-log-out"></span> Login</a>
                         </li>
                         <?php } ?>
                     </ul>

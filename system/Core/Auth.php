@@ -2,11 +2,22 @@
 
 namespace Dalt\Core;
 
-use Common\Models\User;
 use Dalt\Interfaces\IdentityInterface;
 
 class Auth implements IdentityInterface
 {
+    /**
+     *
+     * @var Common\Models\User
+     */
+    protected $user;
+    
+    public function __construct(\Common\Models\User $user) 
+    {
+        if (isset($user)) {
+            $this->user = $user;
+        }
+    }
 
     /**
      *
@@ -27,9 +38,12 @@ class Auth implements IdentityInterface
      * @param string $password
      * @return boolean
      */
-    public static function auth($login, $password)
+    public function auth($login, $password)
     {
-        if (self::check($login, $password)) {
+        $userObj = $this->user::where('login', $login)
+                ->where('status', $this->user::STATUS_ACTIVE)
+                ->first();
+        if (password_verify($password, $userObj->password)) {        
             $_SESSION["login"] = $login;
             return true;
         } else {
@@ -57,31 +71,12 @@ class Auth implements IdentityInterface
 
     /**
      *
-     * @param string $login
-     * @param string $password
-     * @return boolean
-     */
-    public static function check($login, $password)
-    {
-        $user = User::where('login', $login)
-                ->where('status', User::STATUS_ACTIVE)
-                ->first();
-
-        if (isset($user) && $user instanceof User && password_verify($password, $user->password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     *
      * @param int $id
-     * @return User
+     * @return Common\Models\User
      */
-    public static function findIdentity($id)
+    public function findIdentity($id)
     {
-        return User::find($id);
+        return $this->user::find($id);
     }
 
     /**
