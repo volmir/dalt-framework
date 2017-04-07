@@ -6,20 +6,6 @@ use Dalt\Exception\CoreException;
 
 class Request 
 {
-    
-    private static $instance = null;
-
-    /**
-     * 
-     * @return Request
-     */
-    public static function getInstance() 
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
 
     /**
      * 
@@ -52,19 +38,5 @@ class Request
 
         return $this->$name;
     }
-
-    private function __construct() 
-    {
-
-    }
-
-    private function __clone() 
-    {
-        
-    }
     
-    private function __wakeup() 
-    {
-        
-    }    
 }

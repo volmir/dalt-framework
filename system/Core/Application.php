@@ -64,10 +64,10 @@ class Application
         $this->environment = Environment::get();
         $this->config = new Registry($config);
         $this->setDependency();  
+        $this->setParams();        
         $this->response = new Response();
-        $this->request = Request::getInstance();
+        $this->request = new Request();
         $this->assets = new Asset(); 
-        $this->setParams();  
         $this->router = new Router($this->config->routes);
         $this->execute();
     }
@@ -83,7 +83,7 @@ class Application
                     $controller->setApplication($this)->run();
                 }
             } else {
-                throw new CoreException('Controller "' . $controllerName . '" not exists: ' . Request::getInstance()->server["REQUEST_URI"]);
+                throw new CoreException('Controller "' . $controllerName . '" not exists: ' . $_SERVER["REQUEST_URI"]);
             }
         } catch (CoreException $e) {
             $e->logError();

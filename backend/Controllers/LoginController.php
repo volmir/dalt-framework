@@ -5,7 +5,6 @@ namespace Backend\Controllers;
 use Dalt\Core\Controller;
 use Dalt\Core\Auth;
 use Dalt\Core\Response;
-use Dalt\Core\Request;
 use Common\Models\User;
 
 class LoginController extends Controller 
@@ -22,11 +21,10 @@ class LoginController extends Controller
             'title' => 'Sign in',
         ]);        
         
-        $request = Request::getInstance()->request;
-        if (isset($request['login']) && isset($request['password'])) {
+        if (isset($_REQUEST['login']) && isset($_REQUEST['password'])) {
             $auth = $this->di->get('auth');
-            if ($auth->auth($request['login'], $request['password'])) {
-                $user = User::where('login', $request['login'])
+            if ($auth->auth($_REQUEST['login'], $_REQUEST['password'])) {
+                $user = User::where('login', $_REQUEST['login'])
                     ->where('type', User::TYPE_ADMIN)
                     ->where('status', User::STATUS_ACTIVE)
                     ->first();

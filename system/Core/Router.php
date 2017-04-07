@@ -2,7 +2,6 @@
 
 namespace Dalt\Core;
 
-use Dalt\Core\Request;
 use Dalt\Core\Response;
 use Dalt\Core\Url;
 
@@ -57,7 +56,7 @@ class Router
     {
         if ($requestedUrl === null) {
             $requestUri = '';
-            $requestedUrl = Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]);
+            $requestedUrl = Url::cropUrl($_SERVER["REQUEST_URI"]);
             $this->params = Url::splitUrl($requestedUrl);
         }
 
@@ -115,7 +114,7 @@ class Router
      */
     public function error404()
     {
-        $this->addRoute(Url::cropUrl(Request::getInstance()->server["REQUEST_URI"]), 'site/error404');
+        $this->addRoute(Url::cropUrl($_SERVER["REQUEST_URI"]), 'site/error404');
         $this->dispatch();
     }
 
