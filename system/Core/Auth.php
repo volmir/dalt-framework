@@ -8,7 +8,7 @@ class Auth implements IdentityInterface
 {
     /**
      *
-     * @var Common\Models\User
+     * @var \Common\Models\User
      */
     protected $user;
     

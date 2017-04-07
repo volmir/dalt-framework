@@ -2,7 +2,9 @@
 
 namespace Dalt\Core;
 
-class Response 
+use Dalt\Interfaces\ResponseInterface;
+
+class Response implements ResponseInterface
 {
     /**
      *

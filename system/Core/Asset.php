@@ -2,7 +2,9 @@
 
 namespace Dalt\Core;
 
-class Asset
+use Dalt\Interfaces\AssetInterface;
+
+class Asset implements AssetInterface
 {
     
     /**
