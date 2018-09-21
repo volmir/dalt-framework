@@ -43,12 +43,14 @@ class Auth implements IdentityInterface
         $userObj = $this->user::where('login', $login)
                 ->where('status', $this->user::STATUS_ACTIVE)
                 ->first();
-        if (password_verify($password, $userObj->password)) {        
-            $_SESSION["login"] = $login;
-            return true;
-        } else {
-            return false;
+        if ($userObj instanceof Model) {
+            if (password_verify($password, $userObj->password)) {
+                $_SESSION["login"] = $login;
+                return true;
+            }
         }
+        return false;
+
     }
 
     /**
